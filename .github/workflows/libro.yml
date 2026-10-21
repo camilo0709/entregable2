@@ -1,0 +1,61 @@
+# Construye el Jupyter Book (ejecutando los notebooks) y lo publica en
+# GitHub Pages en cada push a main. Activación: Settings → Pages →
+# Source = "GitHub Actions".
+name: Libro (build + deploy)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "libro/**"
+      - "codigo/eda_lib_tb.py"
+      - "codigo/modelos_tb.py"
+      - ".github/workflows/libro.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: libro/requirements.txt
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install -U pip
+          pip install -r libro/requirements.txt
+          # kernel con el nombre que declara el notebook (ejecución reproducible)
+          python -m ipykernel install --user --name proyecto-tb
+
+      - name: Construir libro (ejecuta las celdas)
+        run: jupyter-book build libro/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: libro/_build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

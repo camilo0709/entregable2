@@ -1,0 +1,67 @@
+{
+  "entregable": 2,
+  "version": "1.0",
+  "seed": 42,
+  "val_fraction": 0.15,
+  "n_test_pos": 80,
+  "n_test_neg": 40,
+  "sealed": true,
+  "sellado_fecha_declarada": "fijar al aprobar el preregistro",
+  "decision_d1": "GT del test = anotacion MANUAL humana. Las pseudomascaras SAM 2 solo se usan en train/val.",
+  "pools": {
+    "A_train_val": {
+      "n": 194,
+      "gt": "pseudo_sam2"
+    },
+    "B_test_pos": {
+      "n": 80,
+      "gt": "manual_pendiente"
+    },
+    "C_test_neg": {
+      "n": 40,
+      "gt": "vacia_por_construccion"
+    }
+  },
+  "conteos": {
+    "train": 165,
+    "val": 29,
+    "test_pos": 80,
+    "test_neg": 40
+  },
+  "comprobaciones": {
+    "train_val_disjuntos": true,
+    "test_disjunto_de_train_val": true,
+    "test_pos_disjunto_de_test_neg": true,
+    "sin_ids_repetidos_totales": true,
+    "sin_duplicados_pixeles": true,
+    "verificacion_duplicados_metodo": "dHash<=4 + correlacion pixel (max corr 0.91; 0 pares >0.99)",
+    "balance_area_lesion": {
+      "train_mediana_frac": 0.07407,
+      "test_mediana_frac_box": 0.05748,
+      "nota": "comparacion orientativa: mascara SAM2 vs caja TBX11K (unidades distintas)"
+    },
+    "tb_type_por_split": {
+      "train": {
+        "active_tb": 138,
+        "latent_tb": 27
+      },
+      "val": {
+        "active_tb": 21,
+        "latent_tb": 8
+      }
+    },
+    "test_pos_por_n_boxes": {
+      "1": 39,
+      "2": 40,
+      "3": 1
+    },
+    "TODAS_LAS_COMPROBACIONES_OK": true
+  },
+  "hash_integridad": {
+    "train": "7b3d7a5a6b9ac236762c0c3dea1282fca84473ac7e51f73af69167d13fa9f435",
+    "val": "ee68b2cd1665f5e728d2c7dd0753876340f2ad4e79dd183a9120c91d564e6566",
+    "test_pos": "6e9a67e847b66dd78afe1e6b200c7cc2d99d06d8f3b3cd16f12466d70e43a73c",
+    "test_neg": "e977dfd7b73a330ee34fac411294fc4e68fd321e30307f7d14564bfa97a54e45"
+  },
+  "reproduccion": "python codigo/generar_split_entregable2.py"
+}

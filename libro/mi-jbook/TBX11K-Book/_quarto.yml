@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Análisis Exploratorio del Dataset TBX11K"
+  subtitle: "Tuberculosis X-ray Detection"
+  author:
+    - name: "Mujica Camilo"
+    - name: "Romero Carlos"
+  date: "2026"
+
+  chapters:
+    - index.qmd
+    - EDA_Dataset_TBX11K.ipynb
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-tools: true
+
+execute:
+  enabled: false

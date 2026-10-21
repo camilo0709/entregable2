@@ -1,0 +1,31 @@
+# ---- entornos y temporales ----
+.venv*/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# ---- datos pesados (regenerables / descargables) ----
+datos/kaggle_dataset/
+datos/npz_dataset/
+datos/npz_dataset_v1_old/
+datos/submuestra_validacion/
+datos/para_anotar/
+nuevas_radiografias/
+nnunet_fs/
+
+# ---- pesos y artefactos pesados (reproducibles entrenando) ----
+modelos/
+checkpoints/
+backups/
+
+# ---- clonados de terceros ----
+sam2_official/
+segment-anything-2/
+
+# ---- builds ----
+_build/
+libro/_build/
+
+# ---- sesión ----
+memory/conversacion_*.md

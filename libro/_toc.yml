@@ -1,0 +1,27 @@
+format: jb-book
+root: book/index
+parts:
+  - caption: "1 · Problema, preguntas y dataset"
+    chapters:
+      - file: book/01_planteamiento
+  - caption: "2 · EDA orientado a decisiones"
+    chapters:
+      - file: book/EDA_Decisiones_TBX11K
+  - caption: "3 · Revisión sistemática del estado del arte"
+    chapters:
+      - file: book/03_revision_sistematica
+  - caption: "4 · Implementación de modelos benchmark"
+    chapters:
+      - file: book/04_implementacion
+  - caption: "5 · Paper guía y replicación"
+    chapters:
+      - file: book/05_paper_guia
+  - caption: "6 · Benchmark final (inferencia estadística)"
+    chapters:
+      - file: book/06_benchmark_final
+  - caption: "7 · Ruta metodológica (modality I1–I8)"
+    chapters:
+      - file: book/07_ruta_metodologica
+  - caption: "8 · Reproducibilidad, ética y comunicación"
+    chapters:
+      - file: book/08_reproducibilidad

@@ -1,0 +1,28 @@
+{
+  "version": "pseudo_gt_v2_d1r1",
+  "generado": "2026-10-20T22:33:22",
+  "script": "codigo/generar_pseudo_gt.py",
+  "script_sha256": "45666f36d1f57af63fd762f7c186c638394bd0a69fc6672dbdff68cd320bc5a4",
+  "checkpoint": "checkpoints/sam2_hiera_tiny.pt",
+  "checkpoint_sha256": "65b50056e05bcb13694174f51bb6da89c894b57b75ccdf0ba6352c597c5d1125",
+  "model_cfg": "sam2_hiera_t.yaml",
+  "semilla": 42,
+  "min_component_px": 32,
+  "device": "cpu",
+  "splits": [
+    "train",
+    "val",
+    "test_pos"
+  ],
+  "stats": {
+    "generadas": 274,
+    "por_split": {
+      "train": 165,
+      "val": 29,
+      "test_pos": 80
+    },
+    "errores": []
+  },
+  "duracion_s": 1723.9,
+  "declaracion": "GT plata (silver standard) generado con SAM 2 externo a TBX11K. Ver docs/DECISION_D1_GROUND_TRUTH.md seccion R1. Validacion humana de submuestra: docs/PROTOCOLO_ANOTACION.md."
+}

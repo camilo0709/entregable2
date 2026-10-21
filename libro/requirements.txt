@@ -1,0 +1,10 @@
+# Dependencias del build del libro (local + CI)
+# pip install -r libro/requirements.txt
+jupyter-book~=1.0
+ipykernel
+numpy
+pandas
+scipy
+matplotlib
+pillow
+linkify-it-py

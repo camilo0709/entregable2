@@ -1,0 +1,65 @@
+{
+  "entregable": 2,
+  "version": "2.0",
+  "base": "vigente",
+  "fecha_sellado_v2": "2026-10-20T20:01:13",
+  "motivo_v2": "Los SHA-256 registrados en split_manifest.json (v1) NO corresponden a ninguno de los CSV recuperados de Google Drive (se verifico tambien normalizando CRLF->LF, sin coincidencia). El desfase existia ya en la propia fuente de Drive, previo a cualquier manipulacion local. Los invariantes estructurales de v1 (conteos, disjunciones, sealed) se re-verificaron y se cumplen. Se fija v2 como nueva linea base de integridad ANTES de cualquier entrenamiento. Los CSV v2 son los bytes recuperados de Drive; a partir de aqui no se modifican (remapeo de rutas solo en lectura: dataset_tb._ruta_local).",
+  "seed": 42,
+  "sealed": true,
+  "sellado_fecha_declarada": "2026-10-20T20:01:13",
+  "decision_d1": "GT test = plata SAM 2 (revision D1-R1, ver docs/DECISION_D1_GROUND_TRUTH.md seccion R1)",
+  "pseudo_gt": {
+    "manifiesto": "datos/pseudo_gt_manifest_v2.json",
+    "estado": "generado y validado",
+    "fecha_generacion": "2026-10-20T22:33:22",
+    "conteos": {"train": 165, "val": 29, "test_pos": 80},
+    "errores": 0,
+    "validacion_gt": "datos/ground_truth_test/ANOTACION_METRICAS.json (80/80, apto)",
+    "validacion_humana": {
+      "fecha": "2026-10-20",
+      "submuestra": 20,
+      "dice_techo_media": 0.9879,
+      "dice_techo_min": 0.7583,
+      "umbral": 0.70,
+      "cumple": true
+    },
+    "npz_pool_a_verificado": "194/194 en ruta de CSV con metadata correcta"
+  },
+  "hash_integridad_v2": {
+    "train": "8d88e56a5ff6dd2afe0b1b8c599c847b7762c4cfd948e7c438eae567adc1b6a5",
+    "val": "a63050d3c33aa5d3cdc5efadbd807f25ed5631a123c09a6224c01370b4f6264d",
+    "test_pos": "8032fcbae326032987f3f623f6f9e039f6645913b0ebc3de9a60c1401f23f8a6",
+    "test_neg": "c3120ba4abc99c313880f4832094201022f77d94816d19d23f784d9c19d51d0d",
+    "test_pos_reserva": "a2e62c71cf89ce2869b6fe9e12f9fc97da55d938a0b8cc48b4b2bbd79fc7e348"
+  },
+  "hash_integridad_v2_lf": {
+    "train": "4e92773d08a9d32a8bb88969a5472738638228e332c9c15ad5f1de0deb034820",
+    "val": "902eab4d9b9f654a38c0914f673548bc893a1c9530f2f433594776f438fd6c7f",
+    "test_pos": "82e86d609548d1833fe59dbfef22710691431fedc6480a9eebce08d39996f088",
+    "test_neg": "29e2da75b1abf13f4b61e9dc6d9dd18eaa006e05701872448e4df1d536e92796",
+    "test_pos_reserva": "4aba613ee056a15b23d512567e03eacc70c6489d46e2d3d697f10cb1e941a42b"
+  },
+  "hash_integridad_v1_declarados": {
+    "train": "7b3d7a5a6b9ac236762c0c3dea1282fca84473ac7e51f73af69167d13fa9f435",
+    "val": "ee68b2cd1665f5e728d2c7dd0753876340f2ad4e79dd183a9120c91d564e6566",
+    "test_pos": "6e9a67e847b66dd78afe1e6b200c7cc2d99d06d8f3b3cd16f12466d70e43a73c",
+    "test_neg": "e977dfd7b73a330ee34fac411294fc4e68fd321e30307f7d14564bfa97a54e45"
+  },
+  "conteos": {
+    "train": 165,
+    "val": 29,
+    "test_pos": 80,
+    "test_neg": 40,
+    "test_pos_reserva": 64
+  },
+  "comprobaciones": {
+    "train_disjunto_val": true,
+    "train_disjunto_test_pos": true,
+    "val_disjunto_test_pos": true,
+    "train_disjunto_test_neg": true,
+    "val_disjunto_test_neg": true,
+    "test_pos_disjunto_test_neg": true,
+    "sin_ids_repetidos_totales": true,
+    "TODAS_LAS_COMPROBACIONES_OK": true
+  }
+}

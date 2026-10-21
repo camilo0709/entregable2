@@ -1,0 +1,38 @@
+# Jupyter Book — Entregable 2 Deep Learning (TBX11K)
+# Build:  jupyter-book build libro/     (ejecuta los notebooks en cada build)
+# HTML:   libro/_build/html/index.html
+
+title: "TBX11K · Benchmark de Deep Learning para segmentación de TB"
+short_title: "TBX11K Benchmark"
+author: "Mujica Camilo y Romero Carlos"
+
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: force      # ejecución reproducible de celdas (requisito §8)
+  timeout: 1800
+  allow_errors: false
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - deflist
+    - dollarmath
+    - linkify
+    - substitution
+
+html:
+  use_repository_button: true
+  use_issues_button: false
+  extra_footer: "<p>Entregable 2 — Deep Learning · 2026</p>"
+
+# Reemplazar con la URL real del repo (activa el botón de repositorio):
+repository:
+  url: https://github.com/REEMPLAZAR-ORG/TBX11K-Benchmark
+  branch: main
+  path_to_book: libro
+
+sphinx:
+  config:
+    language: "es"
+    nb_execution_show_tb: true

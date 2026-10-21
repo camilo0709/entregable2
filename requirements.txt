@@ -1,0 +1,68 @@
+# ============================================================================
+# DEPENDENCIAS PARA PIPELINE DE SEGMENTACIÓN DE TB
+# ============================================================================
+# 
+# Uso: pip install -r requirements.txt
+#
+
+# === DEPENDENCIAS ESENCIALES ===
+pandas>=1.3.0
+numpy>=1.21.0
+opencv-python>=4.5.0
+matplotlib>=3.4.0
+tqdm>=4.60.0
+Pillow>=8.0.0
+scikit-image>=0.18.0
+torch>=1.9.0
+torchvision>=0.10.0
+
+# === DEPENDENCIAS OPCIONALES PARA SAM 2 ===
+# Nota: SAM 2 debe instalarse desde el repositorio oficial
+# git clone https://github.com/facebookresearch/segment-anything-2.git
+# cd segment-anything-2
+# pip install -e .
+
+# La instalación estándar de SAM 2 requiere:
+# - timm
+# - hydra-core
+# - einops
+# 
+# Estas se instalan automáticamente con: pip install -e .
+# en el repositorio oficial
+
+# ============================================================================
+# INSTALACIÓN COMPLETA RECOMENDADA:
+# ============================================================================
+#
+# 1. Crear entorno virtual (opcional pero recomendado):
+#    python -m venv tb_segmentation
+#    source tb_segmentation/bin/activate  # En Linux/Mac
+#    tb_segmentation\Scripts\activate     # En Windows
+#
+# 2. Actualizar pip:
+#    pip install --upgrade pip
+#
+# 3. Instalar dependencias básicas:
+#    pip install -r requirements.txt
+#
+# 4. Instalar SAM 2 (RECOMENDADO):
+#    git clone https://github.com/facebookresearch/segment-anything-2.git
+#    cd segment-anything-2
+#    pip install -e .
+#    cd checkpoints
+#    wget https://dl.fbaipublicfiles.com/segment_anything_2/sam2_hiera_large.pt
+#    cd ../..
+#
+# 5. Ejecutar pipeline:
+#    python pipeline_segmentacion_tb.py
+#
+# ============================================================================
+
+# Para GPU (CUDA):
+# torch>=1.9.0+cu11.8
+# torchvision>=0.10.0+cu11.8
+
+# Para CPU únicamente:
+# Descomentar las líneas siguientes y comentar las de arriba
+# torch>=1.9.0+cpu
+# torchvision>=0.10.0+cpu
