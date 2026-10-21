@@ -11,7 +11,7 @@ predefinido. Cada capítulo cierra con decisiones explícitas, no con descripci�
 
 | § | Contenido | Peso | Estado |
 |---|---|---|---|
-| 1 | [Problema, preguntas de investigación y dataset](01_planteamiento.md) | 15 % | ✍️ en preparación |
+| 1 | [Problema, preguntas de investigación y dataset](01_planteamiento.md) | 15 % | ✅ formulación, 4 RQ con H₀/H₁, Data Card |
 | 2 | [EDA orientado a decisiones](EDA_Decisiones_TBX11K.ipynb) | — | ✅ ejecutado (A1–A9) |
 | 3 | [Revisión sistemática del estado del arte](03_revision_sistematica.md) | 15 % | ✅ protocolo, PRISMA, Top 10, gap |
 | 4 | [Implementación de modelos benchmark](04_implementacion.md) | 25 % | 🚀 entrenando (Colab) |
@@ -48,7 +48,7 @@ Los notebooks también se abren directamente en Jupyter/Colab desde el repo.
 
 ## Datos y salvaguardas
 
-- **Dataset:** TBX11K (Shenzhen + Montgomery, 11 600 CXR); splits por paciente
+- **Dataset:** TBX11K (11 200 CXR de DA/DB/Montgomery/Shenzhen, Liu et al., CVPR 2020); splits por paciente
   (`datos/splits/`, sellados por manifest SHA-256).
 - **GT de prueba:** plata generado con SAM 2 y congelado (§2, decisión D1-R1);
   techo humano medido 0.9879. Los CSVs sellados jamás se modifican.
