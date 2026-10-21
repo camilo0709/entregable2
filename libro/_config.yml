@@ -28,7 +28,7 @@ html:
 
 # Reemplazar con la URL real del repo (activa el botón de repositorio):
 repository:
-  url: https://github.com/REEMPLAZAR-ORG/TBX11K-Benchmark
+  url: https://github.com/camilo0709/entregable2
   branch: main
   path_to_book: libro
 
