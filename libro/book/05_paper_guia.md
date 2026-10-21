@@ -1,6 +1,5 @@
 # Sección 5 · Paper guía y replicación
 
-> **Estado:** ✅ entregable · Sección 5 de la rúbrica.
 > La elección del paper guía es la **única decisión declarada post-hoc** del
 > proyecto (ya anticipada en la Sección 1): se eligió después de fijar el
 > dataset y los splits, pero **antes** de tener resultados de ningún modelo

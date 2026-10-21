@@ -1,4 +1,4 @@
-# §6 · Benchmark final: inferencia estadística
+# Sección 6 · Benchmark final: inferencia estadística
 
 > **Estado:** en espera de resultados (20 % de la rúbrica).
 
@@ -13,5 +13,5 @@ Contendrá (script `codigo/estadistica_tb.py`, en construcción):
 - **Grad-CAM:** top-3 modelos, solapamiento con bbox/máscara GT vs baseline geométrico.
 - **Ablación:** ≥3 factores (p. ej., pérdida BCE+Dice, resolución, aumentos).
 - **Análisis Pareto:** Dice vs coste (parámetros/tiempo) — incluye la
-  auto-configuración de nnU-Net (`docs/NNUNET_PIPELINE.md` §7).
-- **Tablas A/B/C** y figuras del §7 del informe.
+  auto-configuración de nnU-Net (`docs/NNUNET_PIPELINE.md`, Sección 7).
+- **Tablas A/B/C** y figuras de la Sección 7 del informe.

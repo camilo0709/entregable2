@@ -1,4 +1,4 @@
-# §4 · Implementación de modelos benchmark
+# Sección 4 · Implementación de modelos benchmark
 
 > **Estado:** entrenamiento en curso en Colab (25 % de la rúbrica).
 
@@ -6,7 +6,7 @@ Contendrá:
 
 - **Diseño del benchmark:** 10 modelos × 5 semillas `[42, 123, 777, 2024, 31415]`,
   presupuesto idéntico (épocas/datos/hardware/métrica), mismos splits sellados.
-- **Arquitecturas** (Top 10 de la [§3](03_revision_sistematica.md)): U-Net,
+- **Arquitecturas** (Top 10 de la [Sección 3](03_revision_sistematica.md)): U-Net,
   Attention U-Net, U-Net++, DeepLabV3+, TransUNet, Swin-Unet, UNETR, SegFormer,
   MedNeXt y nnU-Net (pipeline propio).
 - **Baselines:** `bbox_mask` (no profundo) y `empty_mask` (trivial).

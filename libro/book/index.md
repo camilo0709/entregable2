@@ -9,16 +9,16 @@ predefinido. Cada capítulo cierra con decisiones explícitas, no con descripci�
 
 ## Estructura y ponderación (rúbrica)
 
-| § | Contenido | Peso | Estado |
-|---|---|---|---|
-| 1 | [Problema, preguntas de investigación y dataset](01_planteamiento.md) | 15 % | ✅ formulación, 4 RQ con H₀/H₁, Data Card |
-| 2 | [EDA orientado a decisiones](EDA_Decisiones_TBX11K.ipynb) | — | ✅ ejecutado (A1–A9) |
-| 3 | [Revisión sistemática del estado del arte](03_revision_sistematica.md) | 15 % | ✅ protocolo, PRISMA, Top 10, gap |
-| 4 | [Implementación de modelos benchmark](04_implementacion.md) | 25 % | 🚀 entrenando (Colab) |
-| 5 | [Paper guía y replicación](05_paper_guia.md) | — | ✅ Liu et al. CVPR 2020; replicación C1–C6 ejecutada (Δ=0 en 15/16) |
-| 6 | [Benchmark final (inferencia estadística)](06_benchmark_final.md) | 20 % | ⏳ con resultados §4 |
-| 7 | [Ruta metodológica (modality I1–I8)](07_ruta_metodologica.md) | 15 % | ✍️ en preparación |
-| 8 | [Reproducibilidad, ética y comunicación](08_reproducibilidad.md) | 10 % | ✅ README+deps exactas, checklist 33 ítems, ética, BibTeX verificado, guion de defensa |
+| Sección | Contenido | Peso |
+|---|---|---|
+| 1 | [Problema, preguntas de investigación y dataset](01_planteamiento.md) | 15 % |
+| 2 | [EDA orientado a decisiones](EDA_Decisiones_TBX11K.ipynb) | — |
+| 3 | [Revisión sistemática del estado del arte](03_revision_sistematica.md) | 15 % |
+| 4 | [Implementación de modelos benchmark](04_implementacion.md) | 25 % |
+| 5 | [Paper guía y replicación](05_paper_guia.md) | — |
+| 6 | [Benchmark final (inferencia estadística)](06_benchmark_final.md) | 20 % |
+| 7 | [Ruta metodológica (modality I1–I8)](07_ruta_metodologica.md) | 15 % |
+| 8 | [Reproducibilidad, ética y comunicación](08_reproducibilidad.md) | 10 % |
 
 ## Preguntas de investigación (RQ)
 
@@ -50,7 +50,7 @@ Los notebooks también se abren directamente en Jupyter/Colab desde el repo.
 
 - **Dataset:** TBX11K (11 200 CXR de DA/DB/Montgomery/Shenzhen, Liu et al., CVPR 2020); splits por paciente
   (`datos/splits/`, sellados por manifest SHA-256).
-- **GT de prueba:** plata generado con SAM 2 y congelado (§2, decisión D1-R1);
+- **GT de prueba:** plata generado con SAM 2 y congelado (Sección 2, decisión D1-R1);
   techo humano medido 0.9879. Los CSVs sellados jamás se modifican.
 - **Control OOD:** `test_neg` (sanos de otra adquisición) se usa solo como
   control de falsos positivos (sesgo de adquisición detectado en el EDA: AUC 0.842).

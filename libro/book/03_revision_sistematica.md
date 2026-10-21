@@ -1,10 +1,10 @@
-# §3. Revisión Sistemática del Estado del Arte
+# Sección 3. Revisión Sistemática del Estado del Arte
 
 > **Objetivo.** Identificar, mediante un protocolo de búsqueda reproducible, el Top 10
 > de arquitecturas de Deep Learning para segmentación de lesiones por tuberculosis (TB)
 > en radiografía de tórax (CXR), analizarlas críticamente y formular el *gap* que este
 > proyecto ataca. Este capítulo sella las preguntas de investigación (RQ) que el
-> benchmark de la §4 operacionaliza:
+> benchmark de la Sección 4 operacionaliza:
 >
 > - **RQ1.** ¿Existen diferencias *estadísticamente significativas* entre familias de
 >   arquitecturas (CNN, atención, transformador, híbridas, modernas) al segmentar
@@ -18,7 +18,7 @@
 >   lesión, o los modelos "aciertan por las razones equivocadas"?
 
 Las cifras de este capítulo se sellan con fecha de consulta (2026-10-21). Los
-conteos `s/d` del PRISMA se sustituyen al ejecutar las cadenas §3.1.3 en Scopus/IEEE
+conteos `s/d` del PRISMA se sustituyen al ejecutar las cadenas Sección 3.1.3 en Scopus/IEEE
 con acceso institucional y regenerar `codigo/build_figuras_rev.py`.
 
 ---
@@ -29,7 +29,7 @@ con acceso institucional y regenerar `codigo/build_figuras_rev.py`.
 
 | Fuente | Rol | Estado (2026-10-21) |
 |---|---|---|
-| **Scopus** | principal | cadenas selladas §3.1.3; conteo pendiente de acceso institucional |
+| **Scopus** | principal | cadenas selladas Sección 3.1.3; conteo pendiente de acceso institucional |
 | **IEEE Xplore** | principal | idem |
 | **arXiv** | complementaria | **ejecutada vía API oficial** (conteos abajo) |
 | Web of Science | — | no disponible; Scopus cubre el requisito Q1 |
@@ -89,10 +89,10 @@ Scopus:   TITLE-ABS-KEY(("tuberculosis") AND ("explainab*" OR "interpretab*"
 
 ![](figs_rev/prisma.png)
 
-*Fig. §3.1.* Flujo PRISMA 2020 doble: **A** = estudios de dominio (TB-CXR);
+*Fig. 3.1.* Flujo PRISMA 2020 doble: **A** = estudios de dominio (TB-CXR);
 **B** = selección de arquitecturas. `s/d` = conteo por sellar al ejecutar
-Scopus/IEEE (§3.1.2); los conteos arXiv **ya están ejecutados y son
-reproducibles** con la API oficial y las cadenas textuales de §3.1.2. El script
+Scopus/IEEE (Sección 3.1.2); los conteos arXiv **ya están ejecutados y son
+reproducibles** con la API oficial y las cadenas textuales de Sección 3.1.2. El script
 `codigo/build_figuras_rev.py` regenera la figura al sustituir `COUNTS`.
 
 ### 3.1.5 Amenazas del protocolo
@@ -100,10 +100,10 @@ reproducibles** con la API oficial y las cadenas textuales de §3.1.2. El script
 - **Acceso.** Sin acceso institucional, los conteos Scopus/IEEE quedan como
   variables del PRISMA; las cadenas están selladas para ejecución idéntica.
 - **Publicación sesgada hacia positivos.** La literatura de TB tiende a reportar
-  mejoras sobre baselines débiles (se analiza en §3.3 "sesgo de reporte").
+  mejoras sobre baselines débiles (se analiza en Sección 3.3 "sesgo de reporte").
 - **GT heterogéneo.** Los estudios de dominio usan desde cajas débiles hasta
   pseudo-máscaras; esto imposibilita comparación directa de cifras entre papers
-  (motivo central del Gap §3.4.4).
+  (motivo central del gap de la Sección 3.4.4).
 
 ---
 
@@ -158,26 +158,26 @@ métodos geométricos sin aprendizaje, implementados en este proyecto:
 | **`empty_mask`** (trivial) | máscara vacía (clase mayoritaria) | contextualiza la ganancia real: el Dice medio de un modelo debe superar holgadamente el de predecir "sin lesión" (Dice = 0 en lesionados) |
 
 Ambos están implementados y reportados por el mismo driver que los 10 modelos
-(§4), con la misma métrica y splits.
+(Sección 4), con la misma métrica y splits.
 
 ### 3.2.5 Modelos excluidos más citados (y por qué no están)
 
 | Excluido | Citas (aprox.) | Motivo de exclusión |
 |---|---|---|
-| SAM / SAM 2 (Kirillov et al., 2023/2024) | >3·10⁴ | Modelo *promptable* fundacional: cambia el protocolo (requiere prompts/cajas). Se usa en este proyecto como **generador del GT plata** (§2, D1-R1) y se discute en el gap, no como competidor del benchmark supervisado estándar |
+| SAM / SAM 2 (Kirillov et al., 2023/2024) | >3·10⁴ | Modelo *promptable* fundacional: cambia el protocolo (requiere prompts/cajas). Se usa en este proyecto como **generador del GT plata** (Sección 2, D1-R1) y se discute en el gap, no como competidor del benchmark supervisado estándar |
 | MedSAM | >10³ | ídem (fine-tuning segmentación médica con prompts) — inestable en CXR 2D sin caja |
 | Mask2Former (Cheng et al., 2022) | >5·10³ | Formulación *query-based* para múltiples clases naturales; en lesión binaria 2D no aporta familia nueva (transformer) y su presupuesto desbalancea la comparación |
 | DETR / RT-DETR | >5·10³ | Detección de objetos (cajas), no segmentación densa |
 | R2U-Net, RU-Net (recurrentes) | ~10³ | Familia recurrente descartada por presupuesto: su ganancia reportada sobre U-Net es ≤2 pp en CXR y duplica coste temporal — cubierta como amenaza a la validez |
 | EfficientNet + U-Net | ~10³ | Familia eficiente centrada en clasificación; MedNeXt ya cubre el eje "CNN moderna" |
-| GAN-based (AdvNet, etc.) | ~10³ | Sintetizan/aumentan en lugar de segmentar; el aumento está controlado en §2 |
+| GAN-based (AdvNet, etc.) | ~10³ | Sintetizan/aumentan en lugar de segmentar; el aumento está controlado en Sección 2 |
 
 ---
 
 ## 3.3 Análisis detallado por modelo
 
 > Nota de comparabilidad: las cifras citadas provienen de cada paper en **su**
-> dataset y condiciones; la §3.4 las contrasta y el §4 las re-mide bajo condiciones
+> dataset y condiciones; la Sección 3.4 las contrasta y la Sección 4 las re-mide bajo condiciones
 > idénticas. `≈` denota lectura de tabla del paper.
 
 ### 3.3.1 U-Net — Ronneberger, Brox & Falk (MICCAI 2015; arXiv:1505.04597)
@@ -293,7 +293,7 @@ Ambos están implementados y reportados por el mismo driver que los 10 modelos
   torácicos; $O(N^2)$ prohíbe 512×512 puros (por eso la adaptación usa patches);
   dependencia del preentrenamiento.
 - **Sesgo de reporte (crítico para RQ2):** compara su híbrido *preentrenado*
-  contra U-Net *de cero* — en §4 igualamos presupuesto (sin preentrenamiento
+  contra U-Net *de cero* — en Sección 4 igualamos presupuesto (sin preentrenamiento
   para nadie) precisamente para cerrar este sesgo.
 
 ### 3.3.6 Swin-Unet — Cao et al. (ECCV W. 2022; arXiv:2105.05537)
@@ -334,7 +334,7 @@ Ambos están implementados y reportados por el mismo driver que los 10 modelos
   (bazo ≈0.968); preentrenamiento ImageNet.
 - **Métricas:** Dice medio/HD95; corridas únicas; sin significancia.
 - **Complejidad:** ~92 M parámetros (ViT-B); *el paper es 3D* — nuestra
-  adaptación 2D (1 canal, 512×512) es un traslado declarado (§4).
+  adaptación 2D (1 canal, 512×512) es un traslado declarado (Sección 4).
 - **Fortalezas/limitaciones:** contexto global de largo alcance; coste y
   memoria altos; sin bias local, débil en bordes finos sin skips CNN.
 - **Sesgo de reporte:** ganancias atribuidas al ViT coinciden con
@@ -357,7 +357,7 @@ Ambos están implementados y reportados por el mismo driver que los 10 modelos
   mIoU) y **zero-shot robustness** en Cityscapes-C (ruido/degradación).
 - **Métricas:** mIoU naturales; sin varianza de semillas.
 - **Complejidad:** familia B0–B5 (3.8 M → 84 M); B1 ≈14 M es el punto que
-  usamos en §4.
+  usamos en Sección 4.
 - **Fortalezas/limitaciones:** robustez declarada a corrupciones (motiva su
   inclusión para RQ1 en datos "sucios"); decoder MLP es deliberadamente simple
   (menos capacidad de refinado de bordes).
@@ -378,7 +378,7 @@ Ambos están implementados y reportados por el mismo driver que los 10 modelos
 - **Innovación:** "transformer sin transformers": el rendimiento de ConvNeXt
   trasladado a datos médicos escasos, con escalado sistemático.
 - **Problema/datasets:** 4 tareas CT/MRI (ACDC, MSD…), SOTA declarada en 4;
-  **3D nativo** — nuestra adaptación 2D es declarada (§4).
+  **3D nativo** — nuestra adaptación 2D es declarada (Sección 4).
 - **Métricas:** Dice/HD95 con 5-fold de nnU-Net protocol; **sin pruebas de
   significancia entre arquitecturas**.
 - **Complejidad:** M ≈21 M, L ≈67 M (aprox. de configuraciones del paper).
@@ -406,11 +406,11 @@ Ambos están implementados y reportados por el mismo driver que los 10 modelos
   = desempeño interno medible, **pero sin comparación estadística formal entre
   métodos en el paper**.
 - **Complejidad:** ~33 M (3D fullres); entrenamiento ~50 h/fold (GPU única, del
-  paper); en nuestro benchmark: trainer de 50 épocas (§4, presupuesto acotado).
+  paper); en nuestro benchmark: trainer de 50 épocas (Sección 4, presupuesto acotado).
 - **Fortalezas/limitaciones:** robustez y reproducibilidad; en 2D de baja señal
   su planificador prioriza contexto sobre resolución (riesgo declarado).
 - **Sesgo de reporte:** al ser pipeline completo, la comparación "nnU-Net vs X"
-  mezcla red + protocolo; en §4 lo declaramos y acotamos el presupuesto.
+  mezcla red + protocolo; en Sección 4 lo declaramos y acotamos el presupuesto.
 
 ---
 
@@ -473,9 +473,9 @@ Este proyecto cierra ese gap en cuatro puntos, uno por RQ:
 
 | RQ | Hueco concreto que se llena | Evidencia que aporta el proyecto |
 |---|---|---|
-| RQ1 | 10/10 papers sin significancia entre familias | 10 modelos × 5 semillas, Tablas A/B/C (§6) |
-| RQ2 | comparaciones con preentrenamiento desigual | presupuesto idéntico, sin preentrenamiento para nadie (§4) |
-| RQ3 | GT sin techo cuantificado | techo humano Dice(SAM2, humano)=0.9879 medido (§2/§9.5) |
+| RQ1 | 10/10 papers sin significancia entre familias | 10 modelos × 5 semillas, Tablas A/B/C (Sección 6) |
+| RQ2 | comparaciones con preentrenamiento desigual | presupuesto idéntico, sin preentrenamiento para nadie (Sección 4) |
+| RQ3 | GT sin techo cuantificado | techo humano Dice(SAM2, humano)=0.9879 medido (Secciones 2 y 9.5) |
 | RQ4 | XAI sin validación espacial | Grad-CAM top-3 contrastado con bbox/máscara GT + baseline geométrico |
 
 ---

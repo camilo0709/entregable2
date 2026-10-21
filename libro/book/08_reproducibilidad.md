@@ -1,7 +1,5 @@
 # Sección 8 · Reproducibilidad, ética y comunicación científica
 
-> **Estado:** ✅ entregable (los apartados que dependen de los runs finales de
-> Colab están marcados ⏳ con su estructura ya entregada).
 > Peso agregado de esta sección con la defensa oral: 10 % de la rúbrica.
 
 ---
@@ -46,10 +44,10 @@ métrica queda huérfana de su runtime.
 
 | Artefacto | Script regenerador |
 |---|---|
-| EDA (figuras A1–A9 del Sección 2) | `libro/book/EDA_Decisiones_TBX11K.ipynb` (se reejecuta en cada build) |
+| EDA (figuras A1–A9 de la Sección 2) | `libro/book/EDA_Decisiones_TBX11K.ipynb` (se reejecuta en cada build) |
 | PRISMA + esquemas de la Sección 3 | `codigo/build_figuras_rev.py` |
 | Replicación del paper guía (Tablas de la Sección 5) | `codigo/replicacion_paper_guia.py` |
-| Tablas A/B/C, ranking, Pareto, inferencia estadística (Secciones 6–7) | `codigo/estadistica_tb.py` sobre `resultados/` (⏳ corrida final al cerrar Colab; la estructura de entrada está fijada por el driver) |
+| Tablas A/B/C, ranking, Pareto, inferencia estadística (Secciones 6–7) | `codigo/estadistica_tb.py` sobre `resultados/` (corrida final pendiente al cerrar Colab; la estructura de entrada está fijada por el driver) |
 
 ### Registro de experimentos
 
@@ -71,8 +69,8 @@ que el registro sobrevive a desconexiones de sesión.
 
 Anexa al informe: **[Anexo · Lista de verificación de reproducibilidad](anexo_checklist_reproducibilidad.md)**
 (33 ítems sobre datos, entrenamiento, código y ética, cada uno con estado y
-evidencia apuntando al artefacto exacto). Resumen: 29 ✅ · 4 ⏳ (esperan los
-runs finales) · 0 incumplimientos.
+evidencia apuntando al artefacto exacto). Resumen: 29 cumplidos · 4
+pendientes (esperan los runs finales) · 0 incumplimientos.
 
 ## 8.3 Ética y uso responsable
 
@@ -155,9 +153,9 @@ modalidades no representadas en TBX11K, cuantificación de progreso.
 |---|---|
 | Informe en Jupyter Book con ejecución reproducible | `libro/` → https://camilo0709.github.io/entregable2/ (CI ejecuta celdas en cada build) |
 | Código completo y documentado (EDA, 10 modelos, baselines, ajuste/sobreajuste, estadística, robustez, interpretabilidad) | `codigo/` (Secciones 2, 4, 6, 7 del informe) |
-| Dataset o instrucciones verificables + Data Card | `README.md` §3 + Sección 1.4 (Data Card con hashes) |
-| Ficha de ruta metodológica (modalidad, recorrido I1–I8, evidencia de Tablas A/B/C) | Sección 7 (⏳ pestaña de resultados al cerrar Colab) |
-| Tabla comparativa (métricas, costos, inferencia estadística) | Sección 6 (⏳ idem; datos de entrada: `resultados/`) |
+| Dataset o instrucciones verificables + Data Card | `README.md` Sección 3 + Sección 1.4 (Data Card con hashes) |
+| Ficha de ruta metodológica (modalidad, recorrido I1–I8, evidencia de Tablas A/B/C) | Sección 7 (pestaña de resultados al cerrar Colab) |
+| Tabla comparativa (métricas, costos, inferencia estadística) | Sección 6 (ídem; datos de entrada: `resultados/`) |
 | Registro de experimentos (configs, semillas, resultados por ejecución) | `resultados/<modelo>/seed_<s>/` (estructura en 8.1) |
 | Presentación oral con defensa técnica | Guion abajo + figuras del libro reutilizables como diapositivas |
 
