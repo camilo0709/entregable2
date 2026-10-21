@@ -29,10 +29,13 @@ tqdm>=4.60
 nnunetv2==2.8.1
 # Sin pin exacto (resuelto por pip en la sesión de Colab en curso; el pin
 # exacto se cierra con el campo "entorno" de los resultado.json):
-#   - requiere MONAI >= 1.5 (API proj_type/res_block, ver modelos_tb.py)
-monai>=1.5,<2.0
-#   - requiere smp >= 0.4 (constructor UnetPlusPlus)
+#   - requiere MONAI >= 1.4 (API proj_type/res_block, ver modelos_tb.py;
+#     verificado localmente con 1.4.0 construyendo las 10 arquitecturas)
+monai>=1.4,<2.0
+#   - requiere smp >= 0.4 (constructor UnetPlusPlus; verificado con 0.5.0)
 segmentation-models-pytorch>=0.4,<1.0
+# Perfil computacional (params/FLOPs/latencia; Sección 4, tabla 4.3)
+thop==0.1.1
 
 # --------------------------------------------------------------------------
 # B) INFORME Y ANÁLISIS (Jupyter Book + EDA + estadística)

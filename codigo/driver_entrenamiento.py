@@ -39,6 +39,7 @@ import argparse
 import csv
 import json
 import os
+import random
 import sys
 import time
 import traceback
@@ -222,6 +223,7 @@ def entrenar_run(modelo, semilla, res_dir, cfg, device, limite_segundos=None,
                  splits_dir=SPLITS_DIR):
     """Entrena UN modelo con UNA semilla. Devuelve el dict de resultado."""
     t0 = time.time()
+    random.seed(semilla)
     torch.manual_seed(semilla)
     np.random.seed(semilla)
     if torch.cuda.is_available():
@@ -388,6 +390,12 @@ def main():
                     help="Regenera resumen_runs.csv y sale")
     ap.add_argument("--epochs", type=int, default=CONFIG["epochs"])
     ap.add_argument("--batch", type=int, default=CONFIG["batch_size"])
+    ap.add_argument("--lr", type=float, default=CONFIG["lr"],
+                    help="Override de learning rate (para la grilla de "
+                         "unet_fuerte declarada en la Sección 4.1)")
+    ap.add_argument("--weight-decay", type=float,
+                    default=CONFIG["weight_decay"],
+                    help="Override de weight decay (ídem)")
     a = ap.parse_args()
 
     # Consolas Windows (cp1252) no soportan ✓/⚠/✗: forzar UTF-8 en la salida
@@ -414,6 +422,8 @@ def main():
     cfg = dict(CONFIG)
     cfg["epochs"] = a.epochs
     cfg["batch_size"] = a.batch
+    cfg["lr"] = a.lr
+    cfg["weight_decay"] = a.weight_decay
     if cfg["batch_size"] < 2:
         print("⚠ batch<2: DeepLabV3+ falla (BN sobre 1x1 en image pooling) "
               "y BatchNorm de otros modelos es inestable. Usa --batch >= 2.")

@@ -10,7 +10,8 @@ PROPÓSITO:
 MÉTRICAS DEL ENTREGABLE 2 (Ruta B - imágenes):
     Primaria   -> Dice
     Secundarias-> IoU / mIoU, HD95, ASSD
-    Margen de relevancia (delta) -> 0.01 en Dice
+    Margen de relevancia (delta) -> 0.02 en Dice (Sección 1.1 del informe,
+    preregistrado antes de entrenar; aquí se refleja ese valor)
 
 DEFINICIONES FIJADAS (se declara en el preregistro):
     - Binarización: probabilidad > 0.5
