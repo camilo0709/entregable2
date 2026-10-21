@@ -1,10 +1,5 @@
 # Sección 1 · Definición del problema, preguntas de investigación y dataset
 
-> **Estado:** ✅ entregable · Peso: 15 % de la rúbrica.
-> Las métricas, el margen δ y las hipótesis de este documento se declararon
-> **antes de ejecutar ningún entrenamiento** y antes de tocar el conjunto de
-> prueba (única excepción declarada: la elección del paper guía, Sección 5,
-> que es post-hoc y se declara como tal).
 
 ---
 
