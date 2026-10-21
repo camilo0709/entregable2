@@ -25,3 +25,4 @@ parts:
   - caption: "8 · Reproducibilidad, ética y comunicación"
     chapters:
       - file: book/08_reproducibilidad
+      - file: book/anexo_checklist_reproducibilidad

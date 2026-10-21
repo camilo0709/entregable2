@@ -80,6 +80,39 @@ CONFIG = {
 
 
 # ============================================================================
+# ENTORNO POR RUN (reproducibilidad: cada resultado.json lleva sus versiones)
+# ============================================================================
+
+def entorno_run():
+    """Versiones exactas del runtime de ESTE run; se guardan en resultado.json.
+
+    Permite verificar qué versiones produjeron cada métrica (registro de
+    experimentos del Entregable 2). Devuelve None si un paquete no existe,
+    para no tumbar el run por un problema de metadatos.
+    """
+    from importlib import metadata
+
+    def _v(paquete):
+        try:
+            return metadata.version(paquete)
+        except metadata.PackageNotFoundError:
+            return None
+
+    return {
+        "python": sys.version.split()[0],
+        "torch": torch.__version__,
+        "cuda_disponible": bool(torch.cuda.is_available()),
+        "gpu": (torch.cuda.get_device_name(0)
+                if torch.cuda.is_available() else None),
+        "numpy": _v("numpy"),
+        "segmentation_models_pytorch": _v("segmentation-models-pytorch"),
+        "monai": _v("monai"),
+        "nnunetv2": _v("nnunetv2"),
+        "timm": _v("timm"),
+    }
+
+
+# ============================================================================
 # PÉRDIDA (idéntica para todos los modelos - requisito del Entregable)
 # ============================================================================
 
@@ -239,7 +272,7 @@ def entrenar_run(modelo, semilla, res_dir, cfg, device, limite_segundos=None,
                     "semilla": semilla, "epochs_entrenadas": ep - 1,
                     "dice_val": mejor_dice, "epoch_best": mejor_epoch,
                     "segundos": round(time.time() - t0, 1), "device": str(device),
-                    "historial": historial}
+                    "entorno": entorno_run(), "historial": historial}
 
         ep_loss = 0.0
         for xb, yb, _ in dl_tr:
@@ -314,6 +347,7 @@ def entrenar_run(modelo, semilla, res_dir, cfg, device, limite_segundos=None,
             "dice_val": round(mejor_dice, 5), "epoch_best": mejor_epoch,
             "epochs_entrenadas": len(historial),
             "segundos": round(time.time() - t0, 1), "device": str(device),
+            "entorno": entorno_run(),
             "n_val": len(ds_va), "historial": historial,
             "config": cfg}
 

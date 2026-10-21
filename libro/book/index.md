@@ -18,7 +18,7 @@ predefinido. Cada capítulo cierra con decisiones explícitas, no con descripci�
 | 5 | [Paper guía y replicación](05_paper_guia.md) | — | ✅ Liu et al. CVPR 2020; replicación C1–C6 ejecutada (Δ=0 en 15/16) |
 | 6 | [Benchmark final (inferencia estadística)](06_benchmark_final.md) | 20 % | ⏳ con resultados §4 |
 | 7 | [Ruta metodológica (modality I1–I8)](07_ruta_metodologica.md) | 15 % | ✍️ en preparación |
-| 8 | [Reproducibilidad, ética y comunicación](08_reproducibilidad.md) | 10 % | ✍️ en preparación |
+| 8 | [Reproducibilidad, ética y comunicación](08_reproducibilidad.md) | 10 % | ✅ README+deps exactas, checklist 33 ítems, ética, BibTeX verificado, guion de defensa |
 
 ## Preguntas de investigación (RQ)
 

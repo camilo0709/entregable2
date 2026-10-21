@@ -1,0 +1,220 @@
+% BibTeX canónico del proyecto.
+% Política: solo referencias verificadas — DOI comprobado contra doi.org
+% (2026-10-21) o eprint de arXiv comprobado contra la API de arXiv. Las
+% entradas con DOI marcado "verificado" resolvieron HTTP 200/202/403
+% (403 = recurso existe, bot bloqueado).
+
+% ---------- Dataset y paper guía ----------
+@inproceedings{liu2020rethinking,
+  title     = {Rethinking Computer-aided Tuberculosis Diagnosis},
+  author    = {Liu, Yun and Wu, Yu-Huan and Ban, Yunfeng and Wang, Huifang and Cheng, Ming-Ming},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {2646--2655},
+  year      = {2020},
+  doi       = {10.1109/CVPR42600.2020.01270}
+}
+
+@article{jaeger2014two,
+  title   = {Two public chest X-ray datasets for computer-aided screening of pulmonary diseases},
+  author  = {Jaeger, Stefan and Candemir, Sema and Antani, Sameer and W{\'a}ng, Y{\`\i}-Xi{\'a}ng J and Lu, Pu-Xuan and Thoma, George},
+  journal = {Quantitative Imaging in Medicine and Surgery},
+  volume  = {4},
+  number  = {6},
+  pages   = {475},
+  year    = {2014},
+  doi     = {10.3978/j.issn.2223-4292.2014.11.20}
+}
+
+@article{chauhan2014role,
+  title   = {Role of gist and PHOG features in computer-aided diagnosis of tuberculosis without segmentation},
+  author  = {Chauhan, Arun and Chauhan, Devesh and Rout, Chittaranjan},
+  journal = {PloS One},
+  volume  = {9},
+  number  = {11},
+  pages   = {e112980},
+  year    = {2014},
+  doi     = {10.1371/journal.pone.0112980}
+}
+
+% ---------- Los 10 modelos del benchmark (+ sustitutos y backbones) ----------
+@inproceedings{ronneberger2015unet,
+  title     = {U-Net: Convolutional Networks for Biomedical Image Segmentation},
+  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention (MICCAI)},
+  pages     = {234--241},
+  year      = {2015},
+  doi       = {10.1007/978-3-319-24574-4_28}
+}
+
+@inproceedings{oktay2018attention,
+  title     = {Attention U-Net: Learning Where to Look for the Pancreas},
+  author    = {Oktay, Ozan and Schlemper, Jo and Folgoc, Loic Le and Lee, Matthew and Heinrich, Mattias and Misawa, Kazunari and Mori, Kensaku and McDonagh, Steven and Hammerla, Nils Y. and Kainz, Bernhard and Glocker, Ben and Rueckert, Daniel},
+  booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI) Workshops},
+  year      = {2018},
+  eprint    = {1804.03999},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zhou2019unetpp,
+  title     = {UNet++: A Nested U-Net Architecture for Medical Image Segmentation},
+  author    = {Zhou, Zongwei and Siddiquee, Md Mahfuzur Rahman and Tajbakhsh, Nima and Liang, Jianming},
+  booktitle = {Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support (DLMIA)},
+  pages     = {3--11},
+  year      = {2018},
+  eprint    = {1807.10165},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{chen2018deeplab,
+  title     = {Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation},
+  author    = {Chen, Liang-Chieh and Papandreou, George and Kokkinos, Iasonas and Murphy, Kevin and Yuille, Alan L.},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  pages     = {801--818},
+  year      = {2018},
+  doi       = {10.1007/978-3-030-01234-2_49}
+}
+
+@article{isensee2021nnunet,
+  title   = {nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation},
+  author  = {Isensee, Fabian and Jaeger, Paul F. and Kohl, Simon A. A. and Petersen, Jens and Maier-Hein, Klaus H.},
+  journal = {Nature Methods},
+  volume  = {18},
+  pages   = {203--211},
+  year    = {2021},
+  doi     = {10.1038/s41592-020-01008-z}
+}
+
+@article{chen2021transunet,
+  title   = {TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation},
+  author  = {Chen, Jieneng and Lu, Yongyi and Yu, Qihang and Luo, Xiangde and Adeli, Ehsan and Wang, Yan and Lu, Le and Yuille, Alan L. and Zhou, Yuyin},
+  journal = {Medical Image Analysis},
+  volume  = {97},
+  pages   = {103280},
+  year    = {2024},
+  doi     = {10.1016/j.media.2024.103280},
+  note    = {arXiv:2102.04306}
+}
+
+@inproceedings{cao2022swin,
+  title     = {Swin-Unet: Swin Transformers for Semantic Image Segmentation},
+  author    = {Cao, Hu and Wang, Yueyue and Chen, Joy and Jiang, Dongsheng and Zhang, Xiaopeng and Tian, Qi and Wang, Manning},
+  booktitle = {European Conference on Computer Vision (ECCV) Workshops},
+  pages     = {152--168},
+  year      = {2022},
+  doi       = {10.1007/978-3-031-25066-8_9},
+  note      = {arXiv:2105.05537 (título del preprint: Unet-like Pure Transformer)}
+}
+
+@inproceedings{hatamizadeh2022unetr,
+  title     = {UNETR: Transformers for 3D Medical Image Segmentation},
+  author    = {Hatamizadeh, Ali and Tang, Yucheng and Nath, Vishwesh and Yang, Dong and Myronenko, Andriy and Landman, Bennett and Roth, Holger R. and Xu, Daguang},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  pages     = {1748--1758},
+  year      = {2022},
+  eprint    = {2103.10504},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{xie2021segformer,
+  title     = {SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers},
+  author    = {Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M. and Luo, Ping},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2021},
+  eprint    = {2105.15203},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{roy2023mednext,
+  title     = {MedNeXt: Transformer-driven Scaling of ConvNets for Medical Image Segmentation},
+  author    = {Roy, Saikat and Koehler, Gregor and Ulrich, Constantin and Baumgartner, Michael and Petersen, Jens and Isensee, Fabian and Jaeger, Paul F. and Maier-Hein, Klaus},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention (MICCAI)},
+  year      = {2023},
+  eprint    = {2303.09975},
+  archivePrefix = {arXiv},
+  note      = {En este benchmark se entrena su sustituto declarado SegResNet (MONAI)}
+}
+
+@article{cardoso2022monai,
+  title   = {MONAI: An open-source framework for deep learning in healthcare},
+  author  = {Cardoso, M. Jorge and Li, Wenqi and Brown, Richard and Ma, Nic and Kerfoot, Eric and others},
+  journal = {arXiv preprint arXiv:2211.02701},
+  year    = {2022},
+  note    = {Implementación de UNETR y de SegResNet (sustituto de MedNeXt) usada en este benchmark}
+}
+
+% ---------- Componentes del pipeline (GT de plata y métricas) ----------
+@inproceedings{kirillov2023sam,
+  title     = {Segment Anything},
+  author    = {Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll{\'a}r, Piotr and Girshick, Ross},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  pages     = {4015--4026},
+  year      = {2023},
+  doi       = {10.1109/ICCV51070.2023.00371}
+}
+
+@article{ravi2024sam2,
+  title   = {SAM 2: Segment Anything in Images and Videos},
+  author  = {Ravi, Nikhila and Gabeur, Valentin and Hu, Yuan-Ting and Hu, Ronghang and Ryali, Chaitanya and Ma, Tengyu and Khedr, Haitham and R{\"a}dle, Roman and Rolland, Chloe and Gustafson, Laura and Mintun, Eric and Pan, Junting and Alwala, Kalyan Vasudev and Carion, Nicolas and Wu, Chao-Yuan and Girshick, Ross and Doll{\'a}r, Piotr and Feichtenhofer, Christoph},
+  journal = {arXiv preprint arXiv:2408.00714},
+  year    = {2024},
+  note    = {Solo para la generación del GT de plata (checkpoint bajo licencia Apache-2.0); no es un modelo evaluado}
+}
+
+@incollection{lin2014coco,
+  title     = {Microsoft COCO: Common Objects in Context},
+  author    = {Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C. Lawrence},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  pages     = {740--755},
+  year      = {2014},
+  doi       = {10.1007/978-3-319-10602-1_48},
+  note      = {Origen de APbb (métrica de detección del paper guía)}
+}
+
+@article{dice1945,
+  title   = {Measures of the Amount of Ecologic Association Between Species},
+  author  = {Dice, Lee R.},
+  journal = {Ecology},
+  volume  = {26},
+  number  = {3},
+  pages   = {297--302},
+  year    = {1945},
+  doi     = {10.2307/1931634}
+}
+
+% ---------- Contexto clínico y fundamentos citados ----------
+@book{who2023gtb,
+  title     = {Global Tuberculosis Report 2023},
+  author    = {{World Health Organization}},
+  publisher = {World Health Organization},
+  address   = {Geneva},
+  year      = {2023},
+  isbn      = {978-92-4-008385-1}
+}
+
+@techreport{who2021cxr,
+  title      = {The use of chest radiography in tuberculosis detection: a WHO policy brief},
+  author     = {{World Health Organization}},
+  institution = {World Health Organization},
+  address    = {Geneva},
+  year       = {2021},
+  url        = {https://www.who.int/publications/i/item/9789240029422}
+}
+
+@inproceedings{he2016resnet,
+  title     = {Deep Residual Learning for Image Recognition},
+  author    = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {770--778},
+  year      = {2016},
+  doi       = {10.1109/CVPR.2016.90},
+  note      = {Backbones ResNet-34/50 de los modelos CNN del benchmark (sin pesos preentrenados)}
+}
+
+@inproceedings{deng2009imagenet,
+  title     = {ImageNet: A Large-Scale Hierarchical Image Database},
+  author    = {Deng, Jia and Dong, Wei and Socher, Richard and Li, Li-Jia and Li, Kai and Fei-Fei, Li},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2009},
+  doi       = {10.1109/CVPR.2009.5206848},
+  note      = {Referencia del preentrenamiento que este benchmark declara NO usar (igualdad de presupuesto)}
+}
