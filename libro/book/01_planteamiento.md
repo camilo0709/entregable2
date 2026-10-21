@@ -195,6 +195,7 @@ los CSV sellados jamás se modifican** (remapeo únicamente en memoria).
   author    = {Liu, Yun and Wu, Yu-Huan and Ban, Yunfeng and Wang, Huifang and Cheng, Ming-Ming},
   booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
   pages     = {2646--2655},
-  year      = {2020}
+  year      = {2020},
+  doi       = {10.1109/CVPR42600.2020.01270}
 }
 ```

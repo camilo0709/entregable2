@@ -29,3 +29,6 @@ libro/_build/
 
 # ---- sesión ----
 memory/conversacion_*.md
+
+# PDFs de papers (derechos de autor)
+referencias/papers/*.pdf
