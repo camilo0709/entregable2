@@ -1,6 +1,5 @@
 # Sección 8 · Reproducibilidad, ética y comunicación científica
 
-> Peso agregado de esta sección con la defensa oral: 10 % de la rúbrica.
 
 ---
 
