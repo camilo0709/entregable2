@@ -2,7 +2,7 @@
 
 > **Estado:** resultados de **validación** disponibles para 8 de 10 modelos. La inferencia sobre el **test primario** está pendiente (ver 6.1).
 
-## 6.1 Qué mide este análisis (corrección)
+## 6.1 Qué mide este análisis 
 
 Los valores de `resumen_runs.csv` están en la columna **`dice_val`**: son Dice de **validación**, la métrica con la que se elige la época (early stopping). **No son resultados de test.** Por tanto:
 
