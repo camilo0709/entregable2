@@ -38,12 +38,17 @@ os.makedirs(OUT, exist_ok=True)
 SEMILLAS = [42, 123, 777, 2024, 31415]
 MODELOS = ["unet", "unet_pp", "deeplabv3p", "transunet",
            "swin_unet", "unetr", "segformer", "mednext"]
+# Attention U-Net entrenó por error un U-Net plano (ver Sección 6.3/7.6):
+# se muestra en las figuras como duplicado, fuera de la inferencia.
+DUPLICADOS = ["attention_unet", "unet_fuerte"]
 ETIQUETAS = {
     "unet": "U-Net", "unet_pp": "U-Net++", "deeplabv3p": "DeepLabV3+",
     "transunet": "TransUNet", "swin_unet": "Swin-UNet", "unetr": "UNETR",
     "segformer": "SegFormer", "mednext": "MedNeXt",
+    "attention_unet": "Attention U-Net", "unet_fuerte": "unet_fuerte",
 }
 COLOR = "#2f5d8a"
+COLOR_DUP = "#b03a2e"
 
 
 # ------------------------------------------------------------------ datos
@@ -62,6 +67,7 @@ def cargar(dir_res):
 
 
 def resumen(dice):
+    """Resumen de los 8 modelos válidos; añade Attention U-Net como duplicado."""
     M = {m: np.array([dice[(m, s)] for s in SEMILLAS]) for m in MODELOS}
     out = {}
     rng = np.random.default_rng(42)
@@ -72,6 +78,14 @@ def resumen(dice):
         out[m] = {"media": float(v.mean()), "sd": float(v.std(ddof=1)),
                   "lo": float(lo), "hi": float(hi),
                   "cv": float(100 * v.std(ddof=1) / v.mean())}
+    if "attention_unet" in dice:
+        v = np.array([dice[("attention_unet", s)] for s in SEMILLAS])
+        dup = (np.max(np.abs(v - M["unet"])) < 1e-9)
+        out["attention_unet"] = {
+            "media": float(v.mean()), "sd": float(v.std(ddof=1)),
+            "lo": float(v.mean()), "hi": float(v.mean()),
+            "cv": float(100 * v.std(ddof=1) / v.mean()),
+            "duplicado_de": "unet", "identico": bool(dup)}
     return M, out
 
 
@@ -89,25 +103,35 @@ def cd_nemenyi(k=8, n=5, alpha=0.05):
 
 # --------------------------------------------------------------- figura 1
 def fig_dice_ci(res):
-    orden = sorted(MODELOS, key=lambda m: res[m]["media"])
-    fig, ax = plt.subplots(figsize=(7.2, 4.4))
-    y = np.arange(len(orden))
-    vals = [res[m]["media"] for m in orden]
-    lo = [res[m]["media"] - res[m]["lo"] for m in orden]
-    hi = [res[m]["hi"] - res[m]["media"] for m in orden]
-    ax.barh(y, vals, color=COLOR, alpha=0.85, height=0.6)
+    orden = sorted([m for m in res if m not in DUPLICADOS],
+                   key=lambda m: res[m]["media"])
+    dup = [m for m in DUPLICADOS if m in res and res[m].get("identico")]
+    orden_total = orden + dup
+    fig, ax = plt.subplots(figsize=(7.6, 5.0))
+    y = np.arange(len(orden_total))
+    vals = [res[m]["media"] for m in orden_total]
+    lo = [res[m]["media"] - res[m]["lo"] for m in orden_total]
+    hi = [res[m]["hi"] - res[m]["media"] for m in orden_total]
+    colores = [COLOR_DUP if m in DUPLICADOS else COLOR for m in orden_total]
+    ax.barh(y, vals, color=colores, alpha=0.85, height=0.6)
     ax.errorbar(vals, y, xerr=[lo, hi], fmt="none", ecolor="black",
                 capsize=3, lw=1.2)
-    ax.set_yticks(y, [ETIQUETAS[m] for m in orden])
+    ax.set_yticks(y, [ETIQUETAS[m] for m in orden_total])
     ax.set_xlim(0.42, 0.53)
     ax.set_xlabel("Dice de validación (media de 5 semillas; IC 95 % bootstrap)")
-    ax.axvline(0.156, color="#b03a2e", ls="--", lw=1)
-    ax.text(0.158, len(orden) - 0.35, "trivial todo-foreground 0,156",
-            color="#b03a2e", fontsize=8, va="top")
-    for yi, m in zip(y, orden):
+    ax.axvline(0.156, color="#7d7d7d", ls="--", lw=1)
+    ax.text(0.158, len(orden_total) - 0.35, "trivial todo-foreground 0,156",
+            color="#7d7d7d", fontsize=8, va="top")
+    for yi, m in zip(y, orden_total):
         ax.text(res[m]["media"] + 0.001, yi, f"{res[m]['media']:.4f}",
                 va="center", fontsize=8)
-    ax.set_title("Dice de validación por modelo (8 modelos con runs válidos)")
+    for m in dup:
+        yi = orden_total.index(m)
+        ax.text(res[m]["media"] + 0.009, yi,
+                "duplicado exacto de U-Net (no entra a la inferencia)",
+                va="center", fontsize=7.5, color=COLOR_DUP)
+    ax.set_title("Dice de validación por modelo\n"
+                 "(8 modelos válidos + Attention U-Net, excluido)")
     ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
     ruta = os.path.join(OUT, "dice_ci.png")
@@ -193,7 +217,7 @@ def fig_pareto(res, perfil):
         "gmacs": ("GMACs (512x512)", lambda m: float(perfil[m]["gmacs"])),
         "latencia": ("latencia CPU (ms)", lambda m: float(perfil[m]["latencia_ms_mediana"])),
     }
-    fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.3))
+    fig, axes = plt.subplots(1, 2, figsize=(10.4, 4.4))
     for ax, (clave, (etiqueta, fn)) in zip(axes, costes.items()):
         pts = [(m, fn(m), res[m]["media"]) for m in MODELOS]
         fr = frontera(pts)
@@ -203,6 +227,14 @@ def fig_pareto(res, perfil):
                        edgecolor="black", lw=0.7, zorder=3)
             ax.annotate(ETIQUETAS[m], (c, d), textcoords="offset points",
                         xytext=(5, 5), fontsize=7.5)
+        # Attention U-Net: mismo desempeño que U-Net, mayor coste (duplicado)
+        if "attention_unet" in res:
+            c_dup, d_dup = fn("attention_unet"), res["attention_unet"]["media"]
+            ax.scatter([c_dup], [d_dup], s=55, marker="X", color=COLOR_DUP,
+                       edgecolor="black", lw=0.7, zorder=3)
+            ax.annotate("Attention U-Net (duplicado)", (c_dup, d_dup),
+                        textcoords="offset points", xytext=(5, -12),
+                        fontsize=7.5, color=COLOR_DUP)
         fr = sorted(fr, key=lambda x: x[1])
         ax.plot([p[1] for p in fr], [p[2] for p in fr], color="#b03a2e",
                 lw=1.4, ls="--", zorder=2, label="frontera de Pareto")

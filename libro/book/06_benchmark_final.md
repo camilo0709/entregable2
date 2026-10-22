@@ -57,9 +57,38 @@ split.
 | Attention U-Net | 0,4846 ± 0,0178 | duplicado de U-Net | excluido | excluido | excluido | excluido | 7,8 | 3286 | 24,54 | 31,03 |
 | nnU-Net | `no_disponible` ×5 | — | — | — | — | — | — | — | — | pipeline propio |
 
-**Figura 6.1** (generada por `codigo/figuras_benchmark.py`):
+**Figura 6.1** (generada por `codigo/figuras_benchmark.py`). Incluye Attention
+U-Net marcado en rojo para que la duplicación sea visible: misma altura que
+U-Net, es decir, el mismo Dice con una arquitectura que en teoría añade
+atención y que en los runs guardados no la tenía.
 
 ![Dice de validación con IC 95 % por modelo](figs_stats/dice_ci.png)
+
+### Nota sobre los modelos que no entraron
+
+Dos de las diez arquitecturas del preregistro no produjeron un run válido y se
+documentan aquí en vez de omitirse:
+
+- **Attention U-Net**: los 5 runs guardados son un **U-Net plano**. La versión
+  de la librería instalada ignoraba silenciosamente el parámetro de atención
+  (el módulo tenía 24,43 M de parámetros, idéntico a U-Net, en lugar de los
+  24,54 M con el decodificador de atención). Se detectó comparando los
+  historiales de pérdida época a época entre modelos de la misma semilla: eran
+  idénticos. La corrección ya está aplicada en `modelos_tb.py`, pero sus 5 runs
+  siguen siendo un duplicado y por eso aparecen **excluidos** de la inferencia
+  (rojo en la Figura 6.1 y fuera del panel de Pareto que marca la frontera).
+- **nnU-Net**: **no fue posible hacerlo funcionar pese a los intentos
+  realizados**. El pipeline (documentado en `docs/NNUNET_PIPELINE.md`) se
+  intentó ejecutar en Colab y falló de forma sistemática: es un framework
+  auto-configurado que exige su propio formato de datos (conversión del
+  dataset, `nnUNet_preprocessed` y planificación de configuración) y reventó
+  el tiempo de sesión y la memoria de la GPU disponible en la asignación de
+  tareas; las 5 corridas quedaron registradas como `no_disponible`, sin
+  checkpoint ni métrica. No se sustituyó por cifras de la literatura ni por
+  otro modelo: se declara la ausencia. Es una limitación real del benchmark
+  (el preregistro pedía 10 arquitecturas y la comparación final cubre 8) y se
+  recoge como tal en la discusión crítica y en las limitaciones de la
+  Sección 7.
 
 ### Métricas de calibración
 
@@ -118,6 +147,11 @@ mala).
 ### Frontera de Pareto
 
 ![Frontera de Pareto (Dice frente a GMACs y latencia)](figs_stats/pareto.png)
+
+La figura incluye **Attention U-Net** con un aspa roja: con el mismo Dice que
+U-Net pero 31,03 GMACs y 3286 ms de latencia (casi el doble), queda **fuera de
+la frontera**, que es exactamente lo que se espera de un duplicado costoso.
+nnU-Net no aparece porque no tiene ni métrica ni perfil medidos.
 
 Con los dos pares (calidad, coste) de la figura:
 
@@ -186,7 +220,9 @@ calcula sobre rangos medios, solo los pares con diferencia de rango mayor que
 **DeepLabV3+ supera a Swin-UNet (Δrango 5,60) y a UNETR (Δrango 5,00).**
 Ningún otro par supera el CD. El diagrama muestra los grupos no significativos:
 {U-Net, U-Net++, DeepLabV3+, TransUNet}, {U-Net, SegFormer, MedNeXt} y
-{MedNeXt, SegFormer, Swin-UNet, UNETR}.
+{MedNeXt, SegFormer, Swin-UNet, UNETR}. El diagrama se construye con los
+**8 modelos válidos**: ni Attention U-Net (duplicado de U-Net) ni nnU-Net
+(sin runs) tienen rangos con los que compararse.
 
 ### Comparaciones pareadas (Wilcoxon + Holm) y contraste paramétrico
 
@@ -360,9 +396,14 @@ compromiso razonable; los transformers grandes no se justifican con este N.
 
 1. **La inferencia primaria todavía no está hecha**: esta sección reporta
    validación; el test se ejecuta en la fase 6 y sus tablas no son definitivas.
-2. **nnU-Net no está**: 5 runs `no_disponible`. Sin él, el benchmark compara 9
-   arquitecturas implementadas por el equipo, no el pipeline auto-configurado
-   que la rúbrica sugiere como referencia externa.
+2. **nnU-Net no se pudo hacer funcionar.** Se intentó repetidamente y el
+   pipeline no completó ninguna corrida: exige su propio preprocesado y
+   planificación de configuración, y agotó el tiempo de sesión y la memoria de
+   la GPU disponible. Las 5 entradas quedaron como `no_disponible`, sin
+   checkpoint ni métrica. No se inventó ni se importó ninguna cifra para
+   rellenar su fila. Consecuencia honesta: el benchmark compara **8
+   arquitecturas implementadas por el equipo**, no el pipeline
+   auto-configurado que la rúbrica sugiere como referencia externa.
 3. **Attention U-Net está fuera por un defecto de implementación**: los 5 runs
    guardados entrenaron un U-Net plano (el parámetro de atención de la librería
    se ignoraba en la versión instalada, hallado al comparar los historiales de
