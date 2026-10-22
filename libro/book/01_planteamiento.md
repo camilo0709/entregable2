@@ -10,12 +10,6 @@
 - **Entrada** $x$: radiografía de tórax en grises, $x \in [0,1]^{1 \times 512 \times 512}$ (1 canal, escala [0,1], sin reescalado).
 - **Salida** $y$: máscara binaria de lesión por tuberculosis,
   $y \in \{0,1\}^{512 \times 512}$ (píxel de lesión = 1, resto = 0).
-- **Espacio de hipótesis** $\mathcal{H} = \{f_\theta : \mathbb{R}^{1\times512\times512} \to [0,1]^{512\times512}\}$,
-  una familia de 10 arquitecturas benchmark (Sección 4) entrenadas con la misma
-  pérdida combinada
-  $$\mathcal{L}(\theta) = \underbrace{\tfrac{1}{HW}\sum_i \mathrm{BCE}\big(f_\theta(x)_i,\, y_i\big)}_{\text{entropía cruzada binaria}}
-    + \underbrace{1 - \tfrac{2\sum_i f_\theta(x)_i\, y_i}{\sum_i f_\theta(x)_i + \sum_i y_i + \varepsilon}}_{\text{Dice loss}}$$
-  idéntica pesos para los 10 modelos (decisión A1 del EDA, Sección 2).
 - **Función objetivo** (entrenamiento, solo train):
   $$\theta^{*} = \arg\min_{\theta \in \mathcal{H}} \; \mathbb{E}_{(x,y) \sim \mathcal{D}_{\text{train}}} \big[\mathcal{L}(\theta)\big],
   \qquad \hat{y} = \mathbb{1}\big[f_{\theta^{*}}(x) \ge 0.5\big]$$
