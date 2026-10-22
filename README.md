@@ -83,7 +83,7 @@ presupuesto).
 | EDA completo (figuras A1–A9) | `libro/book/EDA_Decisiones_TBX11K.ipynb` (se ejecuta en cada build) |
 | PRISMA + esquemas de la revisión | `codigo/build_figuras_rev.py` |
 | Replicación del paper guía | `codigo/replicacion_paper_guia.py` |
-| Tablas A/B/C e inferencia estadística | `codigo/estadistica_tb.py` (corre sobre `resultados/`) |
+| Figuras de benchmark (IC, diferencia crítica, Pareto, ruta I1–I8) | `codigo/figuras_benchmark.py` (Secciones 6 y 7) |
 
 ## Licencias y uso responsable
 

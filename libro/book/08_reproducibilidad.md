@@ -1,8 +1,5 @@
 # Sección 8 · Reproducibilidad, ética y comunicación científica
 
-
----
-
 ## 8.1 Reproducibilidad del repositorio
 
 ### Repositorio e instalación
@@ -68,8 +65,8 @@ que el registro sobrevive a desconexiones de sesión.
 
 Anexa al informe: **[Anexo · Lista de verificación de reproducibilidad](anexo_checklist_reproducibilidad.md)**
 (33 ítems sobre datos, entrenamiento, código y ética, cada uno con estado y
-evidencia apuntando al artefacto exacto). Resumen: 29 cumplidos · 4
-pendientes (esperan los runs finales) · 0 incumplimientos.
+evidencia apuntando al artefacto exacto). Resumen: 32 cumplidos · 1 con
+estructura entregada y valores pendientes de la fase 6 · 0 incumplimientos.
 
 ## 8.3 Ética y uso responsable
 

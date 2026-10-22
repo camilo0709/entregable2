@@ -28,10 +28,10 @@
 | B6 | Versiones exactas del runtime registradas por run | Cumplido | `resultado.json` (campo `entorno`, escrito por `entorno_run()`) |
 | B7 | Curvas de pérdida/métrica por época guardadas | Cumplido | `resultado.json` (campo `historial`) |
 | B8 | Métricas por imagen disponibles (no solo agregados) | Cumplido | `por_imagen.csv` por run |
-| B9 | Pruebas de significancia con corrección por comparaciones múltiples | Pendiente | `codigo/estadistica_tb.py` (Holm; estructura en Sección 1.2, resultados en Sección 6 al cerrar los runs) |
-| B10 | Intervalos de confianza (bootstrap) y tamaño de efecto | Pendiente | Ídem (Sección 6) |
-| B11 | Análisis de sobreajuste (curvas train/val, early stopping) | Cumplido | `historial` + early stopping declarado; análisis en Sección 7 |
-| B12 | Pruebas de calibración y robustez de la ruta | Pendiente | Sección 7 (tras resultados) |
+| B9 | Pruebas de significancia con corrección por comparaciones múltiples | Cumplido (validación) | Sección 6.3: Friedman + Iman–Davenport + Nemenyi + Wilcoxon-Holm + t pareado, sobre los 50 runs; `codigo/estadistica_tb.py` |
+| B10 | Intervalos de confianza (bootstrap) y tamaño de efecto | Cumplido (validación) | Sección 6.2–6.3: IC 95 % bootstrap por semillas y d_z con IC; inferencia por imagen pendiente de `dice_test` |
+| B11 | Análisis de sobreajuste (curvas train/val, early stopping) | Cumplido | `historial` + early stopping declarado; Tabla B de la Sección 7.4 |
+| B12 | Pruebas de calibración y robustez de la ruta | Estructura entregada | Sección 6.1: protocolo de Brier/ECE y batería de perturbaciones definidos; valores en la fase 6 |
 
 ## C. Código y entorno
 
@@ -41,10 +41,10 @@
 | C2 | Instrucciones de instalación paso a paso | Cumplido | `README.md` (Secciones 1–2) |
 | C3 | Dependencias con versiones exactas | Cumplido | `requirements.txt` (pinneado) + registro por run (B6) |
 | C4 | Entorno reproducible preferente (contenedor/CI) | Cumplido | CI de GitHub Actions con entorno limpio en cada build del libro (`.github/workflows/libro.yml`); Colab `setup_colab.ipynb` |
-| C5 | Scripts que regeneran figuras y tablas | Cumplido | Tabla en `README.md` Sección 4 (EDA, `build_figuras_rev.py`, `replicacion_paper_guia.py`, `estadistica_tb.py`) |
+| C5 | Scripts que regeneran figuras y tablas | Cumplido | Tabla en `README.md` Sección 4 (EDA, `build_figuras_rev.py`, `replicacion_paper_guia.py`, `estadistica_tb.py`, `figuras_benchmark.py`) |
 | C6 | Código del EDA, modelos, baselines y estadística completo | Cumplido | `codigo/` (10 modelos + 3 baselines en `modelos_tb.py`) |
 | C7 | El informe se construye ejecutando las celdas (no solo markdown) | Cumplido | `execute_notebooks: force` en `libro/_config.yml`; CI ejecuta el EDA real |
-| C8 | Registro de experimentos (configs, semillas, resultados por ejecución) | Pendiente | Estructura `resultados/<modelo>/seed_<s>/` + `resumen_runs.csv`; se llena al descargar los runs de Colab |
+| C8 | Registro de experimentos (configs, semillas, resultados por ejecución) | Cumplido | 50 `resultado.json` (10 modelos × 5 semillas) con `config`, `entorno` e `historial`; agregados en `resumen_runs.csv`. `dice_test` se añade en la fase 6 |
 
 ## D. Ética y comunicación
 

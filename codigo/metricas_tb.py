@@ -32,8 +32,8 @@ para no depender de medpy/monai en el entorno de análisis.
 import numpy as np
 from scipy.ndimage import distance_transform_edt
 
-# Margen de relevancia del Entregable (Delta de Equivalencia)
-DELTA_DICE = 0.01
+# Margen de relevancia práctica del preregistro (Sección 1.1: δ = 0.02)
+DELTA_DICE = 0.02
 
 
 # ============================================================================
