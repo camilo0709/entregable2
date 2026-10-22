@@ -1,7 +1,5 @@
 # Sección 7 · Ruta metodológica según el tipo de datos (I1–I8)
 
-> **Estado:** borrador con la ruta de decisiones. Los puntos marcados como *pendiente de verificar* no aparecen en los documentos del proyecto.
-
 ## 7.1 Contexto del problema
 
 Imagen 2D monocroma (radiografía de tórax, 512×512), baja señal (lesiones con contraste de unos 10–30 niveles sobre 0–255), GT de plata (pseudomáscara de SAM 2 sobre la caja de TBX11K) y N moderado (194 imágenes de pool de entrenamiento, 80 positivas y 40 negativas en test). Estas condiciones determinan la ruta de abajo.
