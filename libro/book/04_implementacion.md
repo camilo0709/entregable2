@@ -51,7 +51,12 @@ vez al final"):
    código de entrenamiento que pueda leer el test.
 2. **Por fase:** la evaluación de test se ejecuta en la fase de análisis
    (Sección 6), cuando los 55 runs están congelados, con el mejor checkpoint
-   de cada corrida (época seleccionada por val).
+   de cada corrida (época seleccionada por val). Única salvedad declarada:
+   el pipeline de nnU-Net genera sus predicciones de test dentro de su
+   propia corrida, **después** de entrenar cada fold congelado (50 épocas
+   fijas, sin selección alguna basada en test); la única toma de contacto
+   analítica —comparar, decidir, publicar— sigue siendo una sola, en la
+   fase de resultados.
 3. **Integridad:** `verificar_integridad_splits.py` y el EDA comparan los
    SHA-256 de los CSV contra `split_manifest_v2.json` en cada ejecución; el
    check C6 de la replicación confirma que los splits son subconjunto del

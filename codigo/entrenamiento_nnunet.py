@@ -39,7 +39,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from driver_entrenamiento import (guardar_resultado, recomponer_resumen,  # noqa: E402
-                                  run_completado)
+                                  run_completado, entorno_run)            # noqa: E402
 from modelos_tb import ORDEN_BENCHMARK, ORDEN_BASELINES, SEMILLAS          # noqa: E402
 from eda_lib_tb import encontrar_root, cargar_splits, ruta_local           # noqa: E402
 from metricas_tb import metricas_imagen                                    # noqa: E402
@@ -342,6 +342,7 @@ def main():
                  "epoch_best": None, "epochs_entrenadas": a.epocas,
                  "segundos": round(time.time() - t0, 1),
                  "device": "cuda" if _hay_cuda() else "cpu",
+                 "entorno": entorno_run(),
                  "config": {"fold": fold, "epocas": a.epocas, "dataset": NOMBRE_DS,
                             "gt": "plata SAM2 congelado (D1-R1)",
                             "pool_train_val": 194, "test_pos": 80}}
