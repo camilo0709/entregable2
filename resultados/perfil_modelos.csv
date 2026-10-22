@@ -1,14 +1,14 @@
 modelo,params_m,params_entrenables_m,gmacs,gflops,latencia_ms_mediana,pico_memoria_mb,device,notas
-unet,24.43,24.43,30.99,61.98,930.8,,cpu,
-attention_unet,24.43,24.43,30.99,61.98,1039.6,,cpu,
-unet_pp,26.07,26.07,73.39,146.78,2741.6,,cpu,
-deeplabv3p,26.67,26.67,36.49,72.99,1170.6,,cpu,
-transunet,33.81,33.81,42.48,84.95,1579.3,,cpu,
-swin_unet,27.47,27.47,27.37,54.73,1526.9,,cpu,
-unetr,116.24,116.24,105.14,210.27,3178.2,,cpu,
-segformer,24.72,24.72,21.08,42.16,1732.1,,cpu,
-mednext,6.3,6.3,62.61,125.21,1733.4,,cpu,
+unet,24.43,24.43,30.99,61.98,1766.0,,cpu,
+attention_unet,24.54,24.54,31.03,62.06,3285.6,,cpu,
+unet_pp,26.07,26.07,73.39,146.78,3974.6,,cpu,
+deeplabv3p,26.67,26.67,36.49,72.99,1973.0,,cpu,
+transunet,33.81,33.81,42.48,84.95,3085.0,,cpu,
+swin_unet,27.47,27.47,27.37,54.73,2851.7,,cpu,
+unetr,116.24,116.24,105.14,210.27,6303.4,,cpu,
+segformer,24.72,24.72,21.08,42.16,3149.9,,cpu,
+mednext,6.3,6.3,62.61,125.21,2281.3,,cpu,
 empty_mask,,,,,,,,baseline sin red (params=0)
 bbox_mask,,,,,,,,baseline sin red (params=0)
-unet_fuerte,24.43,24.43,30.99,61.98,829.1,,cpu,
+unet_fuerte,24.43,24.43,30.99,61.98,1117.3,,cpu,
 nnunet,,,,,,,,pipeline propio (ver docs/NNUNET_PIPELINE.md)

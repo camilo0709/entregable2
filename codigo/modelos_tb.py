@@ -66,9 +66,14 @@ MODELOS = {
         "nombre": "Attention U-Net",
         "backend": "smp",
         "constructor": "Unet",
-        # smp implementa Attention U-Net via attention_type (gates de Oktay)
+        # OJO: smp.Unet NO acepta "attention_type" (lo IGNORA en silencio y
+        # devuelve un U-Net plano). El parámetro correcto de smp es
+        # "decoder_attention_type": introduce bloques SCSE de atención en el
+        # decoder. Sustitución declarada: SCSE de smp ≠ gates AG de Oktay.
+        # (Verificado: params(Unet+scse) != params(Unet plano); un commit
+        # previo entrenó Attention U-Net como U-Net plano por este error.)
         "params": {"encoder_name": "resnet34", "encoder_weights": None,
-                   "attention_type": "scse"},
+                   "decoder_attention_type": "scse"},
         "familia": "CNN + attention",
         "paper": "Oktay et al., MICCAI 2018 (arXiv:1804.03999)",
         "entrenable": True,

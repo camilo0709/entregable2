@@ -127,7 +127,7 @@ realmente ejecutadas en cada corrida quedan en el campo `entorno` de cada
 | # | Modelo | Familia | Paper | Implementación (versión fijada) | Declaración |
 |---|---|---|---|---|---|
 | 1 | U-Net | CNN | Ronneberger, MICCAI 2015 | smp `Unet`, encoder ResNet-34 | — |
-| 2 | Attention U-Net | CNN + atención | Oktay, MICCAI 2018 | smp `Unet` + `attention_type="scse"` | smp implementa la atención como bloques **SCSE** (canal + espacial), no como las *attention gates* aditivas del paper; es el mecanismo de atención disponible con el mismo protocolo y se declara como variante de la misma familia |
+| 2 | Attention U-Net | CNN + atención | Oktay, MICCAI 2018 | smp `Unet` + `decoder_attention_type="scse"` | smp implementa la atención como bloques **SCSE** (canal + espacial), no como las *attention gates* aditivas del paper; es el mecanismo de atención disponible con el mismo protocolo y se declara como variante de la misma familia. Nota verificada empíricamente: el parámetro `attention_type` es **ignorado en silencio** por `smp.Unet` (devolvería un U-Net plano); el parámetro correcto es `decoder_attention_type` |
 | 3 | U-Net++ | CNN (skip denso) | Zhou, DLMIA 2018 | smp `UnetPlusPlus`, ResNet-34 | — |
 | 4 | DeepLabV3+ | CNN + ASPP | Chen, CVPR 2018 | smp `DeepLabV3Plus`, ResNet-50 | Requiere batch ≥ 2 (la rama de *image pooling* del ASPP usa BN sobre 1×1); batch 8 del protocolo lo cumple |
 | 5 | nnU-Net | CNN (autoconfig) | Isensee, Nat. Methods 2021 | Pipeline propio `nnunetv2 2.8.1` (config `2d`) | Su planificador fija parche [512,512] y batch 10; ver presupuesto en 4.3 |
@@ -184,19 +184,19 @@ CPU de referencia — la latencia de despliegue se mide en GPU con
 
 | modelo | params (M) | GMACs | GFLOPs | latencia (ms) |
 |---|---|---|---|---|
-| U-Net | 24,43 | 30,99 | 61,98 | 931 |
-| Attention U-Net | 24,43 | 30,99 | 61,98 | 1 040 |
-| U-Net++ | 26,07 | 73,39 | 146,78 | 2 742 |
-| DeepLabV3+ | 26,67 | 36,49 | 72,99 | 1 171 |
+| U-Net | 24,43 | 30,99 | 61,98 | 1 766 |
+| Attention U-Net | 24,54 | 31,03 | 62,06 | 3 286 |
+| U-Net++ | 26,07 | 73,39 | 146,78 | 3 975 |
+| DeepLabV3+ | 26,67 | 36,49 | 72,99 | 1 973 |
 | nnU-Net | — | — | — | — |
-| TransUNet (sustituto) | 33,81 | 42,48 | 84,95 | 1 579 |
-| Swin-UNet (sustituto) | 27,47 | 27,37 | 54,73 | 1 527 |
-| UNETR | 116,24 | 105,14 | 210,27 | 3 178 |
-| SegFormer | 24,72 | 21,08 | 42,16 | 1 732 |
-| MedNeXt (sust. SegResNet) | 6,30 | 62,61 | 125,21 | 1 733 |
+| TransUNet (sustituto) | 33,81 | 42,48 | 84,95 | 3 085 |
+| Swin-UNet (sustituto) | 27,47 | 27,37 | 54,73 | 2 852 |
+| UNETR | 116,24 | 105,14 | 210,27 | 6 303 |
+| SegFormer | 24,72 | 21,08 | 42,16 | 3 150 |
+| MedNeXt (sust. SegResNet) | 6,30 | 62,61 | 125,21 | 2 281 |
 | `empty_mask` | 0 | 0 | 0 | — |
 | `bbox_mask` | 0 | 0 | 0 | — |
-| `unet_fuerte` | 24,43 | 30,99 | 61,98 | 829 |
+| `unet_fuerte` | 24,43 | 30,99 | 61,98 | 1 117 |
 
 Medido el 2026-10-21 con `codigo/perfil_modelos.py` (entrada 1×512×512,
 batch 1, `resultados/perfil_modelos.csv`). La latencia es la mediana de 5
@@ -215,9 +215,10 @@ Lecturas relevantes para el análisis posterior (Sección 6):
   optimización que el resto, y su coste se pondera en el Pareto.
 - **MedNeXt (SegResNet) es el más liviano en parámetros (6,3 M) pero no en
   cómputo (125 GFLOPs)**: profundidad residual a resolución completa.
-- **Attention U-Net suma prácticamente cero MACs** sobre U-Net (los bloques
-  SCSE son element-wise) pero ~12 % de latencia extra en CPU: la atención
-  aquí es "casi gratis" en FLOPs.
+- **Attention U-Net suma 0,1 % de parámetros y MACs** sobre U-Net (los bloques
+  SCSE son element-wise), pero ~1,9× de latencia en CPU: la atención aquí es
+  "gratis" en FLOPs y cara en CPU (operaciones poco paralelizables sin
+  vectorizar).
 - **SegFormer tiene el cómputo más bajo de las 10** (42 GFLOPs) con 24,7 M
   parámetros: si su Dice compite, será el punto de partida del Pareto.
 

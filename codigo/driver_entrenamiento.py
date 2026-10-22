@@ -200,7 +200,10 @@ def recomponer_resumen(res_dir, modelos, semillas):
                 r = json.load(f)
             filas.append({
                 "modelo": m, "semilla": s, "estado": r.get("estado"),
-                "dice_val": r.get("dice_val"), "epoch_best": r.get("epoch_best"),
+                "dice_val": r.get("dice_val"),
+                "dice_test": r.get("dice_test"),
+                "ood_frac_media": (r.get("ood") or {}).get("frac_media"),
+                "epoch_best": r.get("epoch_best"),
                 "epochs_entrenadas": r.get("epochs_entrenadas"),
                 "segundos": r.get("segundos"), "device": r.get("device"),
                 "mejor_modelo": os.path.join(ruta_run(res_dir, m, s),
