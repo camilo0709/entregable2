@@ -157,33 +157,4 @@ modalidades no representadas en TBX11K, cuantificación de progreso.
 | Ficha de ruta metodológica (modalidad, recorrido I1–I8, evidencia de Tablas A/B/C) | Sección 7 (pestaña de resultados al cerrar Colab) |
 | Tabla comparativa (métricas, costos, inferencia estadística) | Sección 6 (ídem; datos de entrada: `resultados/`) |
 | Registro de experimentos (configs, semillas, resultados por ejecución) | `resultados/<modelo>/seed_<s>/` (estructura en 8.1) |
-| Presentación oral con defensa técnica | Guion abajo + figuras del libro reutilizables como diapositivas |
-
-### Guion de la defensa oral (~10 min)
-
-1. **Problema y RQ** (1 min): segmentación de TB en CXR, 4 RQ con H₀/H₁,
-   métrica primaria Dice y δ = 0,02 (Sección 1).
-2. **Datos y GT de plata** (1,5 min): TBX11K, splits sellados con SHA-256,
-   cadena cajas → SAM 2 → plata validado 80/80, **techo humano 0,9879**
-   (Secciones 1.3–1.4).
-3. **Gap y EDA** (1,5 min): 9/10 sin varianza, 10/10 sin tests (Sección 3);
-   hallazgos A1–A9 que fijan el protocolo (Sección 2).
-4. **Benchmark** (2 min): 10 modelos × 5 semillas, presupuesto idéntico,
-   sin preentrenados; nnU-Net como folds (Sección 4).
-5. **Inferencia estadística** (2 min): Friedman + Iman-Davenport, Nemenyi y
-   Wilcoxon-Holm, bootstrap vs δ, Pareto (Sección 6).
-6. **Ética y replicación** (1 min): sesgo de adquisición medido, licencias,
-   replicación del paper guía Δ = 0 en 15/16 (Secciones 5 y 8.3).
-7. **Contribución** (1 min): benchmark estadísticamente contrastable que
-   cierra el gap documentado; límites declarados (techo del GT, 2D binario).
-
-### Preguntas anticipadas de la defensa
-
-| Pregunta | Respuesta breve |
-|---|---|
-| ¿Por qué GT de plata y no anotación manual? | 80×512² de anotación manual supera el presupuesto del curso; SAM 2 con prompt de caja produce GT validado 80/80 con **techo medido** (0,9879) y congelado antes de entrenar (D1-R1) |
-| ¿Por qué sin pesos preentrenados? | Igualdad de presupuesto entre las 10 arquitecturas; el preentrenamiento sería una variable confundidora del factor "arquitectura" (Sección 4) |
-| ¿Friedman con 5 semillas es suficiente? | Es el mínimo de la rúbrica y coincide con la práctica del campo; se añade bootstrap por imagen (n = 80) y corrección Holm — la potencia se discute en Sección 6 |
-| ¿Cómo sabes que no hay fuga de datos? | Auditoría A2 (0 duplicados exactos, 29 pHash inspeccionados), sellado de splits y check C6 (0 imágenes fuera del trainval oficial) |
-| ¿Los números son comparables a los del paper guía? | No directamente: su test de 2 800 tiene GT no publicado. Es comparable vía puente APbb y con la salvedad declarada (Sección 5.5) |
-| ¿Qué pasa si el modelo falla en producción? | Uso asistencial con humano en el bucle; control OOD continuo con `test_neg`; techo declarado evita sobreinterpretar mejoras marginales |
+| Presentación oral con defensa técnica | Documento de preparación oral (guion + preguntas anticipadas), entregado aparte; las figuras del libro sirven como diapositivas |
