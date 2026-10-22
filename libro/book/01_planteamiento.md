@@ -10,9 +10,6 @@
 - **Entrada** $x$: radiografía de tórax en grises, $x \in [0,1]^{1 \times 512 \times 512}$ (1 canal, escala [0,1], sin reescalado).
 - **Salida** $y$: máscara binaria de lesión por tuberculosis,
   $y \in \{0,1\}^{512 \times 512}$ (píxel de lesión = 1, resto = 0).
-- **Función objetivo** (entrenamiento, solo train):
-  $$\theta^{*} = \arg\min_{\theta \in \mathcal{H}} \; \mathbb{E}_{(x,y) \sim \mathcal{D}_{\text{train}}} \big[\mathcal{L}(\theta)\big],
-  \qquad \hat{y} = \mathbb{1}\big[f_{\theta^{*}}(x) \ge 0.5\big]$$
   umbral de inferencia fijo en 0.5 para los 10 modelos (sin calibración por modelo).
 
 ### Tipo de tarea
