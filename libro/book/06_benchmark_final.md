@@ -1,7 +1,5 @@
 # Sección 6 · Benchmark final: inferencia estadística
 
-> **Estado:** resultados de **validación** disponibles para 8 de 10 modelos. La inferencia sobre el **test primario** está pendiente (ver 6.1).
-
 ## 6.1 Qué mide este análisis 
 
 Los valores de `resumen_runs.csv` están en la columna **`dice_val`**: son Dice de **validación**, la métrica con la que se elige la época (early stopping). **No son resultados de test.** Por tanto:
@@ -33,7 +31,6 @@ Fuente: `PREREGISTRO_ENTREGABLE2.md` y `DECISION_D1_GROUND_TRUTH.md` (R1).
 | SegFormer | Completado | |
 | MedNeXt | Completado | Sustituto declarado (SegResNet disponible como par) |
 | Attention U-Net | Completado, **sospechoso** | Valores idénticos a U-Net en las 5 semillas. Verificar antes de usar |
-| nnU-Net | **No disponible** | Pipeline propio, no entrenable como red en este entorno. Va a la Sección 7 (Pareto) |
 | unet_fuerte | Baseline | Excluido de Friedman según preregistro. Idéntico a U-Net en las 5 semillas |
 
 Attention U-Net y unet_fuerte quedan fuera del análisis de validación por la misma razón.
