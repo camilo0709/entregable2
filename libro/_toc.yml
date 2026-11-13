@@ -26,3 +26,6 @@ parts:
     chapters:
       - file: book/08_reproducibilidad
       - file: book/anexo_checklist_reproducibilidad
+  - caption: "9 · Trazabilidad de correcciones (Entregable 3)"
+    chapters:
+      - file: book/09_trazabilidad_correcciones

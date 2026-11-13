@@ -473,7 +473,7 @@ Este proyecto cierra ese gap en cuatro puntos, uno por RQ:
 
 | RQ | Hueco concreto que se llena | Evidencia que aporta el proyecto |
 |---|---|---|
-| RQ1 | 10/10 papers sin significancia entre familias | 10 modelos × 5 semillas, Tablas A/B/C (Sección 6) |
+| RQ1 | 10/10 papers sin significancia entre familias | 8 modelos válidos × 5 semillas = 40 corridas (10 planificados), Tablas A/B/C (Sección 6) |
 | RQ2 | comparaciones con preentrenamiento desigual | presupuesto idéntico, sin preentrenamiento para nadie (Sección 4) |
 | RQ3 | GT sin techo cuantificado | techo humano Dice(SAM2, humano)=0.9879 medido (Secciones 2 y 9.5) |
 | RQ4 | XAI sin validación espacial | Grad-CAM top-3 contrastado con bbox/máscara GT + baseline geométrico |

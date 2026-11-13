@@ -3,13 +3,16 @@
 Esta sección responde RQ1–RQ4 (Sección 1.2) con la batería de pruebas del
 preregistro. La métrica primaria declarada es el **Dice medio por imagen en
 `test_pos`** (80 casos, GT de plata D1-R1), con IC 95 % por bootstrap y
-δ = 0,02. El benchmark se ejecutó en dos fases: (a) los 50 entrenamientos
-(10 modelos × 5 semillas), ya completados, y (b) la evaluación de test, que se
-ejecuta **una sola vez** al cerrar los runs (`codigo/evaluar_test.py`). Esta
-sección reporta las dos: los resultados de validación como diagnóstico de
-semilla, y la inferencia confirmatoria sobre test. **Estado:** los 50 runs de
-entrenamiento están completados; el bloque de test depende de la fase de
-evaluación final y se marca explícitamente en cada tabla.
+δ = 0,02. El benchmark se ejecutó en dos fases: (a) el entrenamiento, ya
+congelado, y (b) la evaluación de test, que se ejecuta **una sola vez** al
+cerrar los runs (`codigo/evaluar_test.py`). Esta sección reporta las dos: los
+resultados de validación como diagnóstico de semilla, y la inferencia
+confirmatoria sobre test. **Estado:** de las 55 corridas planificadas se
+completaron 50 (45 de arquitecturas + 5 de `unet_fuerte`); la inferencia de
+RQ1 usa las **40 corridas válidas (8 arquitecturas × 5 semillas)**, porque
+nnU-Net no está disponible y Attention U-Net quedó invalidado por un bug de
+atención. La contabilidad completa está en la Sección 4.1.2. El bloque de test
+depende de la fase de evaluación final y se marca explícitamente en cada tabla.
 
 ## 6.1 Comparación tabular
 
@@ -18,7 +21,8 @@ evaluación final y se marca explícitamente en cada tabla.
 | Elemento | Definición |
 |---|---|
 | Unidad de independencia | imagen (80 positivas en `test_pos`). TBX11K no tiene ID de paciente (I1) |
-| Corridas | 10 modelos × 5 semillas (42, 123, 777, 2024, 31415) = 50 |
+| Corridas | 8 arquitecturas válidas × 5 semillas (42, 123, 777, 2024, 31415) = **40** (de 55 planificadas y 50 completadas) |
+| Excluidas de RQ1 | nnU-Net (0/5, no disponible); Attention U-Net (5/5, bug de atención); `unet_fuerte` (5, baseline) |
 | Presupuesto | idéntico: 1 canal, 512×512, DiceBCE 0,5/0,5, AdamW 1e-4 + coseno, ≤150 épocas, early stopping paciencia 25 sobre Dice de validación, umbral fijo 0,5 |
 | Métrica primaria | Dice medio por imagen en `test_pos`, IC 95 % bootstrap |
 | Métricas secundarias | IoU, HD95 (px), ASSD (px); estratos `n_boxes`, `tb_type` y área |
@@ -192,8 +196,8 @@ promedios: por eso el ranking se contrasta con las pruebas formales de 6.3.
 | Homocedasticidad | Levene (centro = mediana) | W = 0,550, p = 0,790; Bartlett p = 0,740 | No se rechaza igualdad de varianzas |
 | Independencia | Por diseño | Las semillas son independientes; las imágenes dentro de una semilla no (mismo split); no hay ID de paciente que agrupe | Se reportan los dos niveles y se declara la limitación |
 
-**Elección:** con 10 o más modelos (aquí 8 con runs válidos) y n = 5, el test
-recomendado por la rúbrica es **Friedman** (no paramétrico, por bloques).
+**Elección:** con 8 modelos válidos y n = 5, el test recomendado por la rúbrica
+es **Friedman** (no paramétrico, por bloques).
 Shapiro–Wilk no rechaza, así que también se reporta el **t pareado** como
 contraste paramétrico; ambos se corrigen con Holm.
 
@@ -431,5 +435,5 @@ python codigo/figuras_benchmark.py --resultados resultados # Figuras 6.1–6.3
 
 Los datos de entrada son `resultados/<modelo>/seed_<s>/resultado.json` (más
 `por_imagen.csv` y `por_imagen_test.csv`) y `resultados/perfil_modelos.csv`.
-El script verifica el diseño (10 modelos × 5 semillas), detecta duplicados por
+El script verifica el diseño (modelos × semillas), detecta duplicados por
 curvas de pérdida idénticas y escribe todo en `resultados/estadistica/`.

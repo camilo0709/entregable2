@@ -84,6 +84,12 @@ presupuesto).
 | PRISMA + esquemas de la revisión | `codigo/build_figuras_rev.py` |
 | Replicación del paper guía | `codigo/replicacion_paper_guia.py` |
 | Figuras de benchmark (IC, diferencia crítica, Pareto, ruta I1–I8) | `codigo/figuras_benchmark.py` (Secciones 6 y 7) |
+| Fase 6: evaluación única de `test_pos` | `codigo/evaluar_test.py` |
+| Estadística (Tablas A/B/C, Friedman, Nemenyi, Holm) | `codigo/estadistica_tb.py` |
+| Calibración (Brier, ECE, temperature scaling) | `codigo/calibracion.py` |
+| Robustez ante perturbaciones | `codigo/robustez.py` |
+| Grad-CAM validado contra GT y caja | `codigo/gradcam.py` |
+| Sobreajuste (brecha train–val, optimismo de selección) | `codigo/sobreajuste.py` |
 
 ## Licencias y uso responsable
 

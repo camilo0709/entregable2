@@ -31,7 +31,7 @@ de tórax (Ruta B, imagen 2D).
 | Decisión | Binarización con umbral **0,5 fijado a priori** (no se optimiza ningún umbral sobre test) |
 | Pérdida (común) | $\mathcal{L} = 0,5\,\mathrm{BCEWithLogits} + 0,5\,(1-\mathrm{Dice}_{\text{soft}})$, idéntica para las 10 redes |
 
-### 4.1.2 División del dataset (idéntica para los 13 modelos)
+### 4.1.2 División del dataset (idéntica para todos los modelos)
 
 La partición se congeló en la fase de GT (2026-10-20, decisión D1-R1) **antes
 de cualquier entrenamiento** y se selló con SHA-256:
@@ -50,7 +50,7 @@ vez al final"):
    ninguna circunstancia; solo genera `por_imagen.csv` sobre `val`. No existe
    código de entrenamiento que pueda leer el test.
 2. **Por fase:** la evaluación de test se ejecuta en la fase de análisis
-   (Sección 6), cuando los 55 runs están congelados, con el mejor checkpoint
+   (Sección 6), cuando las corridas están congeladas, con el mejor checkpoint
    de cada corrida (época seleccionada por val). Única salvedad declarada:
    el pipeline de nnU-Net genera sus predicciones de test dentro de su
    propia corrida, **después** de entrenar cada fold congelado (50 épocas
@@ -61,6 +61,29 @@ vez al final"):
    SHA-256 de los CSV contra `split_manifest_v2.json` en cada ejecución; el
    check C6 de la replicación confirma que los splits son subconjunto del
    trainval oficial (0 imágenes ajenas).
+
+**Contabilidad de corridas.** El registro contiene **13 entradas** (10
+arquitecturas + 3 baselines), de las cuales **11 son entrenables**. El plan
+pre-registrado era **55 corridas** (11 × 5 semillas); el estado real al cerrar
+la fase de entrenamiento se resume en una sola tabla, que es la fuente única
+de las cifras que citan las Secciones 6 y 7:
+
+| Categoría | n | Detalle |
+|---|---:|---|
+| Entradas del registro | 13 | 10 arquitecturas + 3 baselines (`empty_mask`, `bbox_mask`, `unet_fuerte`) |
+| Entrenables | 11 | 10 arquitecturas + `unet_fuerte` |
+| Planificadas | 55 | 11 × 5 semillas |
+| Completadas | 50 | 45 de arquitecturas + 5 de `unet_fuerte` |
+| Arquitecturas completadas | 45 | 9 × 5; nnU-Net **no disponible** (0 de 5) |
+| Válidas para RQ1 | 40 | 8 × 5; Attention U-Net **excluido** por el bug de atención (5 corridas) |
+| `unet_fuerte` | 5 | Baseline; su `CONFIG` coincide con la de U-Net, así que no entra en RQ1 |
+
+nnU-Net se declara **no disponible** (5 corridas planificadas, 0 completadas)
+y Attention U-Net **inválido** (5 corridas completadas con un decodificador que
+ignoraba la atención); ambas se documentan como limitaciones y **no se
+imputan**. Los baselines `empty_mask` y `bbox_mask` no se entrenan: se evalúan
+de forma determinista sobre el mismo split. Por tanto, la inferencia de RQ1
+usa 8 arquitecturas × 5 semillas = 40 corridas válidas, no 10 × 5 = 50.
 
 ### 4.1.3 Pipeline modular
 
@@ -117,7 +140,8 @@ modelo de la comparación principal.
 
 ### 4.2.1 Registro único de arquitecturas
 
-Los 13 modelos viven en `modelos_tb.py` como un solo diccionario de verdad:
+Las **13 entradas del registro** (10 arquitecturas + 3 baselines) viven en
+`modelos_tb.py` como un solo diccionario de verdad:
 el driver importa de ahí, de modo que el protocolo no puede desviarse por
 accidente. Librerías con versión fijada: `segmentation-models-pytorch 0.5.0`
 y `monai 1.4.0` (verificadas construyendo las 10 arquitecturas; las versiones
@@ -248,9 +272,12 @@ estadísticamente con las 5 corridas (varianza entre semillas, Sección 6).
 
 ### Repetición
 
-5 corridas independientes por modelo (**55 corridas de redes entrenables**:
-los 10 modelos + `unet_fuerte`; `empty_mask` y `bbox_mask` no entrenan). Para
-nnU-Net, la equivalencia **folds internos ↔
+5 corridas independientes por cada modelo entrenable. El plan era **55
+corridas** (11 entrenables × 5 semillas: los 10 modelos + `unet_fuerte`;
+`empty_mask` y `bbox_mask` no entrenan). Al cierre se completaron **50**: 45 de
+arquitecturas (9 × 5) y 5 de `unet_fuerte`; de ellas, **40 son válidas para
+RQ1** (8 × 5). La tabla de contabilidad de la Sección 4.1.2 fija estas cifras.
+Para nnU-Net, la equivalencia **folds internos ↔
 semillas** está declarada y justificada en `docs/NNUNET_PIPELINE.md`
 (5 subconjuntos de validación disjuntos dentro del pool de 194 → varianza
 comparable). Se reportarán media, desviación estándar e IC 95 % (bootstrap)

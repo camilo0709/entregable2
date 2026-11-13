@@ -28,10 +28,10 @@
 | B6 | Versiones exactas del runtime registradas por run | Cumplido | `resultado.json` (campo `entorno`, escrito por `entorno_run()`) |
 | B7 | Curvas de pérdida/métrica por época guardadas | Cumplido | `resultado.json` (campo `historial`) |
 | B8 | Métricas por imagen disponibles (no solo agregados) | Cumplido | `por_imagen.csv` por run |
-| B9 | Pruebas de significancia con corrección por comparaciones múltiples | Cumplido (validación) | Sección 6.3: Friedman + Iman–Davenport + Nemenyi + Wilcoxon-Holm + t pareado, sobre los 50 runs; `codigo/estadistica_tb.py` |
+| B9 | Pruebas de significancia con corrección por comparaciones múltiples | Cumplido (validación) | Sección 6.3: Friedman + Iman–Davenport + Nemenyi + Wilcoxon-Holm + t pareado, sobre las **40 corridas válidas** (8 modelos × 5); `codigo/estadistica_tb.py` |
 | B10 | Intervalos de confianza (bootstrap) y tamaño de efecto | Cumplido (validación) | Sección 6.2–6.3: IC 95 % bootstrap por semillas y d_z con IC; inferencia por imagen pendiente de `dice_test` |
 | B11 | Análisis de sobreajuste (curvas train/val, early stopping) | Cumplido | `historial` + early stopping declarado; Tabla B de la Sección 7.4 |
-| B12 | Pruebas de calibración y robustez de la ruta | Estructura entregada | Sección 6.1: protocolo de Brier/ECE y batería de perturbaciones definidos; valores en la fase 6 |
+| B12 | Pruebas de calibración y robustez de la ruta | Cumplido (código) | Sección 7.4 (Tabla B) y `codigo/calibracion.py`, `codigo/robustez.py`, `codigo/gradcam.py`, `codigo/sobreajuste.py`; valores completos en la fase 6 |
 
 ## C. Código y entorno
 
@@ -44,7 +44,7 @@
 | C5 | Scripts que regeneran figuras y tablas | Cumplido | Tabla en `README.md` Sección 4 (EDA, `build_figuras_rev.py`, `replicacion_paper_guia.py`, `estadistica_tb.py`, `figuras_benchmark.py`) |
 | C6 | Código del EDA, modelos, baselines y estadística completo | Cumplido | `codigo/` (10 modelos + 3 baselines en `modelos_tb.py`) |
 | C7 | El informe se construye ejecutando las celdas (no solo markdown) | Cumplido | `execute_notebooks: force` en `libro/_config.yml`; CI ejecuta el EDA real |
-| C8 | Registro de experimentos (configs, semillas, resultados por ejecución) | Cumplido | 50 `resultado.json` (10 modelos × 5 semillas) con `config`, `entorno` e `historial`; agregados en `resumen_runs.csv`. `dice_test` se añade en la fase 6 |
+| C8 | Registro de experimentos (configs, semillas, resultados por ejecución) | Cumplido | 50 `resultado.json`: 45 de arquitecturas (9 × 5) + 5 de `unet_fuerte`; **40 válidas para RQ1**; con `config`, `entorno` e `historial`; agregados en `resumen_runs.csv`. `dice_test` se añade en la fase 6 |
 
 ## D. Ética y comunicación
 

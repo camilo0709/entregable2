@@ -9,7 +9,7 @@ author: "Mujica Camilo y Romero Carlos"
 only_build_toc_files: true
 
 execute:
-  execute_notebooks: force      # ejecución reproducible de celdas (requisito §8)
+  execute_notebooks: force      # ejecución reproducible de celdas (requisito de la Sección 8)
   timeout: 1800
   allow_errors: false
 

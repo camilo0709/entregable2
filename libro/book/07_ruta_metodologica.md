@@ -39,7 +39,7 @@ cada uno en este trabajo.
 | **Paso 4. Definir la partición** | Por unidad de independencia, sellada, con disjunción comprobada | I1 e I2: splits sellados con SHA-256 (165 train / 29 val / 80 test_pos / 40 test_neg / 64 reserva); disjunción de IDs verificada. Sin ID de paciente: limitación declarada |
 | **Paso 5. Elegir modelos y baselines** | Baselines triviales y 10 modelos comparables | I5: máscara vacía, todo-foreground, `bbox_mask`, `unet_fuerte` + 10 modelos con el mismo protocolo |
 | **Paso 6. Igualar el presupuesto** | Mismo número de intentos de hiperparámetros y mismo cómputo | I5: un solo protocolo para todos; la única búsqueda (`unet_fuerte`) corrió sobre la misma grilla para todos y usa el mismo número de pasos que el resto. Sin AMP ni gradient clipping; energía no medida (declarado) |
-| **Paso 7. Repetir** | Mínimo 5 ejecuciones independientes por modelo | 10 modelos × 5 semillas = 50 corridas (42, 123, 777, 2024, 31415), todas completadas |
+| **Paso 7. Repetir** | Mínimo 5 ejecuciones independientes por modelo | 10 arquitecturas × 5 semillas = 50 planificadas; se completaron 45 de arquitecturas (9 × 5; nnU-Net no disponible) + 5 de `unet_fuerte` = **50 completadas en total**, **40 válidas para RQ1** (8 × 5; Attention U-Net excluido por bug) |
 | **Paso 8. Diagnosticar** | Bondad de ajuste y sobreajuste (Tablas A y B) y diferencias (Tabla C) | Tablas A, B y C en 7.4; el motor es `codigo/estadistica_tb.py` |
 
 ## 7.4 Tablas A, B y C
@@ -55,7 +55,7 @@ la Tabla C está en la Sección 6.3.
 | Comparación con el baseline trivial | El modelo no supera la proporción de la clase mayoritaria / máscara vacía | Dice de cada modelo contra todo-foreground (0,156) y máscara vacía (0,000) en `test_pos`, con umbral 0,5 | **Superado por todos los modelos** en validación; el contraste formal se cierra con `dice_test` en la fase 6 |
 | Permutación de etiquetas | El modelo no captura relación entre x e y | Permutar la máscara en train y repetir el pipeline completo (B ≥ 200 por coste) con el mejor modelo; p = (1 + #{s_b ≥ s_obs})/(B + 1) | Pendiente de fase 6 (requiere reentrenar; se ejecuta una vez sobre DeepLabV3+) |
 | AUC frente a 0,5 | El score no discrimina lesión de sano | AUC con DeLong sobre 120 imágenes (Dice por imagen como score, 80 positivas + 40 sanos), IC 95 % bootstrap | Pendiente de fase 6 (`evaluar_test.py --ood`) |
-| Calibración | Las probabilidades predichas son consistentes con las frecuencias observadas | Brier y ECE (10 bins) por píxel, global y restringido a la máscara, sobre `test_pos`; curva de fiabilidad por deciles | Pendiente de fase 6; el umbral no se recalibra (congelado en 0,5) |
+| Calibración | Las probabilidades predichas son consistentes con las frecuencias observadas | Brier y ECE (15 bins) por píxel, global y restringido a la máscara, sobre `test_pos`; temperatura ajustada **solo en val** | **Implementado** (`codigo/calibracion.py`), probado con DeepLabV3+ s42; resultados de test en fase 6. El umbral no se recalibra (congelado en 0,5) |
 | Significancia de la métrica de acuerdo | El acuerdo es igual al azar | Dice contra su valor esperado bajo máscara aleatoria; complemento con el IC bootstrap | Cubierto por el baseline trivial y el IC |
 | Justificación de no usar pruebas de clasificación puras | — | La tarea es de segmentación, así que Hosmer–Lemeshow y la pendiente de calibración logística se sustituyen por su análogo por píxel (reliability diagram + ECE). Se declara la sustitución | Declarado |
 
@@ -63,12 +63,12 @@ la Tabla C está en la Sección 6.3.
 
 | Prueba | H₀ | Cómo se aplicó aquí | Resultado |
 |---|---|---|---|
-| Brecha train–validación con margen | La brecha es menor que el margen definido a priori | La época se elige por `dice_val` (early stopping, paciencia 25), así que el score de la época guardada ya está medido sobre validación; la brecha se reporta como la diferencia entre la pérdida de train y la de validación en la época óptima, con margen δ_g = 0,05 de pérdida | Reportable con los `historial` ya guardados; el margen δ_g se declara aquí por primera vez y se marca como post-hoc |
+| Brecha train–validación con margen | La brecha es menor que el margen definido a priori | La época se elige por `dice_val` (early stopping, paciencia 25), así que el score de la época guardada ya está medido sobre validación; la brecha se reporta como la diferencia entre la pérdida de train y la de validación en la época óptima, con margen δ_g = 0,05 de pérdida | **Implementado** (`codigo/sobreajuste.py`), probado con DeepLabV3+ s42; la corrida completa se ejecuta con los 50 checkpoints. El margen δ_g se declara aquí por primera vez y se marca como post-hoc |
 | Sensibilidad a la semilla | La varianza del score entre semillas no supera la tolerada | Coeficiente de variación del Dice_val entre las 5 semillas por modelo; Kruskal–Wallis entre grupos de semillas | CV = 2,3 %–5,2 % (todos por debajo del 10 % tolerado). Kruskal–Wallis entre las 5 semillas pooled: H = 24,19, p = 0,0011, explicado por las diferencias **entre modelos**, no por un efecto de semilla |
 | Validación frente a prueba | El score de validación y el de test no difieren | IC bootstrap de la diferencia Dice_val − Dice_test, remuestreando por unidad de independencia | Pendiente de fase 6; es el contraste central contra el sobreajuste a la validación |
-| Optimismo por bootstrap (.632+) | El optimismo medio es 0 | Bootstrap sobre las 5 corridas por modelo para estimar el optimismo del Dice de validación | Pendiente: se ejecuta cuando exista `dice_test` (sin test, el .632+ no tiene dato externo) |
+| Optimismo por bootstrap (.632+) | El optimismo medio es 0 | Se implementa el **optimismo de selección** (mejor `dice_val` − media de la curva, con z del pico frente al máximo esperado); el .632+ con reentrenamiento se declara no ejecutado | **Implementado** (`codigo/sobreajuste.py`); el .632+ completo exige reentrenar y queda como limitación declarada |
 | Validación adversarial | AUC = 0,5 al distinguir train de test | Clasificador apariencia-only train vs test; ya ejecutado como "adversarial interno" en el EDA A7 | Sin significancia en el contraste interno; el sesgo de adquisición sí aparece entre TB y sanos (AUC 0,842), que es lo que el control OOD mide |
-| Revisión de Grad-CAM | — | Grad-CAM contra atajos (I8, RQ4) | Pendiente de fase 6 |
+| Revisión de Grad-CAM | — | Grad-CAM contra atajos (I8, RQ4): masa dentro de GT frente al área del GT, precisión del top-20 % y solape con la caja TBX11K | **Implementado** (`codigo/gradcam.py`); prueba en `tb0018` con DeepLabV3+ s42: masa en GT 0,136 vs área 0,050 (lift +0,086). Se ejecuta sobre los 3 mejores en fase 6 |
 | Curvas de aprendizaje | La pendiente del score frente al tamaño de entrenamiento es 0 | Entrenar con el 10 %, 20 %, …, 100 % del train y 5 semillas; regresión de val sobre log(n) | **No ejecutado**: se declara como limitación. Con 194 imágenes de pool, la curva exige 5 × 10 corridas extra |
 
 ### Tabla C · Diferencias estadísticamente significativas entre modelos
@@ -101,7 +101,8 @@ la Tabla C está en la Sección 6.3.
 **Preregistrado** (`PREREGISTRO_ENTREGABLE2.md`, sellado el 2026-10-20):
 
 - Preguntas e hipótesis RQ1–RQ4 de la Sección 1.2.
-- Diseño: 10 modelos, 5 semillas (42, 123, 777, 2024, 31415), split sellado con
+- Diseño: 10 modelos planificados (8 válidos), 5 semillas (42, 123, 777, 2024,
+  31415), split sellado con
   semilla 42 (165 / 29 / 80 / 40 / 64 de reserva).
 - Métricas: Dice como primaria; IoU, HD95 y ASSD como secundarias; **δ = 0,02**;
   α = 0,05 con corrección de Holm.
@@ -148,6 +149,8 @@ la Tabla C está en la Sección 6.3.
 - Attention U-Net fuera por defecto de implementación y nnU-Net fuera por
   indisponibilidad: la comparación final cubre 8 arquitecturas con runs
   válidos.
-- Robustez, calibración, Grad-CAM y la inferencia primaria sobre test se
-  completan en la fase de evaluación final; esta sección deja la estructura,
-  el motor y los criterios de decisión ya fijados.
+- Los módulos de robustez (`codigo/robustez.py`), calibración
+  (`codigo/calibracion.py`), Grad-CAM (`codigo/gradcam.py`) y sobreajuste
+  (`codigo/sobreajuste.py`) están implementados y probados con el checkpoint
+  de DeepLabV3+ s42; la ejecución sobre los 50 checkpoints y la inferencia
+  primaria sobre test se completan en la fase de evaluación final.
