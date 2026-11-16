@@ -183,7 +183,7 @@ def gradcam(net, x):
     cam = F.relu((w * a).sum(dim=1, keepdim=True)).detach()
     cam = F.interpolate(cam, size=x.shape[-2:], mode="bilinear", align_corners=False)[0, 0]
     cam = cam / (cam.max() + 1e-8)
-    return cam.numpy(), torch.sigmoid(lg)[0, 0].detach().numpy()
+    return cam.detach().cpu().numpy(), torch.sigmoid(lg)[0, 0].detach().cpu().numpy()
 
 
 def figura_gradcam(net, ds, indices, device, ruta):
