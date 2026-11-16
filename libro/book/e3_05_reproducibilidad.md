@@ -21,12 +21,16 @@
 
 ### Reparto del trabajo
 
-Los dos autores se dividieron el **entrenamiento de los distintos modelos** del benchmark (arquitecturas base,
-variantes de LACCA y ablaciones, con sus semillas) y el **registro de sus resultados** (carpetas de resultados,
-`resumen_runs.csv` y `por_imagen_test.csv` de cada corrida). Cada autor ejecutó en Colab los cuadernos de los modelos
-que le correspondieron y dejó sus archivos en la carpeta compartida del proyecto. El detalle de qué modelos
-entrenó cada uno puede reconstruirse a partir de los campos `device`, `segundos` y la fecha de modificación de cada
-`resultado.json` en `resultados/e3/`.
+Los dos autores se dividieron el **entrenamiento de los modelos** del benchmark y el **registro de sus resultados**
+(carpetas de resultados, `resumen_runs.csv` y `por_imagen_test.csv` de cada corrida):
+
+| Autor | Modelos entrenados y registrados |
+|---|---|
+| Mujica Camilo | SegFormer, U-Net, TransUNet, U-Net++ y DeepLabV3+ |
+| Romero Carlos | Los demás: Attention U-Net, MedNeXt, UNETR, Swin-UNet, LACCA-UNet y sus ablaciones (`lacca_eje_fijo`, `lacca_sin_asimetria`, `lacca_global`), además de `unet_fuerte` |
+
+Cada autor ejecutó en Colab los cuadernos de los modelos que le correspondieron y dejó sus archivos en la carpeta
+compartida del proyecto.
 
 ### Herramientas utilizadas
 
