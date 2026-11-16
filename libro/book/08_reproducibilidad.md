@@ -4,7 +4,7 @@
 
 ### Repositorio e instalación
 
-Repositorio versionado y público: **github.com/camilo0709/entregable2**
+Repositorio versionado y público: **github.com/camilo0709/entregable3**
 (historial con identidad de autor; cada push a `main` construye y publica el
 informe vía GitHub Actions — `.github/workflows/libro.yml`).
 

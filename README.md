@@ -116,7 +116,7 @@ presupuesto).
   author = {{Entregable 2 — Curso de Deep Learning}},
   year   = {2026},
   url    = {https://camilo0709.github.io/entregable2/},
-  note   = {Código: https://github.com/camilo0709/entregable2}
+  note   = {Código: https://github.com/camilo0709/entregable3}
 }
 ```
 

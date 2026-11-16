@@ -37,7 +37,7 @@
 
 | # | Ítem | Estado | Evidencia |
 |---|---|---|---|
-| C1 | Repositorio versionado con historial público | Cumplido | `github.com/camilo0709/entregable2` |
+| C1 | Repositorio versionado con historial público | Cumplido | `github.com/camilo0709/entregable3` |
 | C2 | Instrucciones de instalación paso a paso | Cumplido | `README.md` (Secciones 1–2) |
 | C3 | Dependencias con versiones exactas | Cumplido | `requirements.txt` (pinneado) + registro por run (B6) |
 | C4 | Entorno reproducible preferente (contenedor/CI) | Cumplido | CI de GitHub Actions con entorno limpio en cada build del libro (`.github/workflows/libro.yml`); Colab `setup_colab.ipynb` |

@@ -39,5 +39,8 @@ ampliaron (sesgo de selección pequeño).
 `codigo/e3/` es autocontenido y **no reemplaza** los módulos de `codigo/`.
 Varios archivos con el mismo nombre difieren entre ambas ramas de código
 (p. ej. `modelos_tb.py`, `metricas_tb.py`, `driver_entrenamiento.py`);
-en particular `DELTA_DICE` es 0,02 en `codigo/metricas_tb.py` y 0,01 en
-`codigo/e3/metricas_tb.py`. Conviene unificarlos antes de la entrega.
+en particular `DELTA_DICE` es 0,02 en `codigo/metricas_tb.py` (Entregable 2) y
+0,01 en `codigo/e3/metricas_tb.py`. **Decisión:** el análisis del Entregable 3
+usa 0,01, el margen preregistrado en `protocolo.md`; el valor 0,02 queda solo
+como parte del código histórico del Entregable 2 y no se usó en ningún
+resultado de `resultados/e3/`.
