@@ -1,0 +1,11 @@
+perturbacion,dice_test_pos,caida_vs_limpio
+limpio,0.54715,0.0
+ruido_0.1,0.4611,0.08605
+ruido_0.3,0.22532,0.32183
+ruido_0.5,0.19644,0.3507
+desenfoque_1,0.38705,0.1601
+desenfoque_2,0.21131,0.33584
+contraste_0.7,0.50326,0.04388
+contraste_0.5,0.35104,0.19611
+brillo_+0.5,0.38237,0.16478
+brillo_-0.5,0.45205,0.0951
