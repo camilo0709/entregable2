@@ -29,3 +29,11 @@ parts:
   - caption: "9 · Trazabilidad de correcciones (Entregable 3)"
     chapters:
       - file: book/09_trazabilidad_correcciones
+  - caption: "10 · Entregable 3 · LACCA-UNet"
+    chapters:
+      - file: book/e3_00_introduccion
+      - file: book/e3_01_novedad
+      - file: book/e3_02_metodo
+      - file: book/e3_03_resultados
+      - file: book/e3_04_conclusiones
+      - file: book/e3_05_reproducibilidad
