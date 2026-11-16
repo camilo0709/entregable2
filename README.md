@@ -1,7 +1,7 @@
 # TBX11K · Benchmark de Deep Learning para segmentación de tuberculosis
 [![DOI](https://zenodo.org/badge/1428670308.svg)](https://doi.org/10.5281/zenodo.24294484)
 
-**Cómo citar:** Mujica, C. y Romero, C. (2026). *LACCA-UNet: atención cruzada contralateral con eje aprendido para segmentación de lesiones de TB (TBX11K)*. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+**Cómo citar:** Mujica, C. y Romero, C. (2026). *LACCA-UNet: atención cruzada contralateral con eje aprendido para segmentación de lesiones de TB (TBX11K)*. Zenodo. https://doi.org/10.5281/zenodo.24294484
 Entregable 2 del curso de Deep Learning: **10 modelos de segmentación × 5
 semillas** sobre el dataset TBX11K, con inferencia estadística, revisión
 sistemática, replicación del paper guía y GT de "plata" validado.
