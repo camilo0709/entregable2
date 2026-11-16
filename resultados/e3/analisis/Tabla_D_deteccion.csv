@@ -1,0 +1,17 @@
+tipo,modelo,vs,auc_modelo,auc_mejor,estadistico_z,p,p_holm,aciertos_modelo,aciertos_mejor,n10,n01
+DeLong,unet,attention_unet,0.832187,0.971875,-8.4111,0.0,0.0,,,,
+DeLong,unet_pp,attention_unet,0.955,0.971875,-1.3665,0.171772,0.171772,,,,
+DeLong,deeplabv3p,attention_unet,0.903125,0.971875,-4.558,5e-06,1.5e-05,,,,
+DeLong,transunet,attention_unet,0.897813,0.971875,-4.3831,1.2e-05,2.3e-05,,,,
+DeLong,swin_unet,attention_unet,0.808438,0.971875,-8.9937,0.0,0.0,,,,
+DeLong,unetr,attention_unet,0.72,0.971875,-16.231,0.0,0.0,,,,
+DeLong,segformer,attention_unet,0.729688,0.971875,-13.6053,0.0,0.0,,,,
+DeLong,mednext,attention_unet,0.8525,0.971875,-6.8761,0.0,0.0,,,,
+McNemar,unet,attention_unet,,,,1.0,1.0,80,81,0,1
+McNemar,unet_pp,attention_unet,,,,0.625,1.0,83,81,3,1
+McNemar,deeplabv3p,attention_unet,,,,0.5,1.0,79,81,0,2
+McNemar,transunet,attention_unet,,,,1.0,1.0,80,81,0,1
+McNemar,swin_unet,attention_unet,,,,1.0,1.0,80,81,0,1
+McNemar,unetr,attention_unet,,,,1.0,1.0,80,81,0,1
+McNemar,segformer,attention_unet,,,,1.0,1.0,80,81,0,1
+McNemar,mednext,attention_unet,,,,0.5,1.0,79,81,0,2

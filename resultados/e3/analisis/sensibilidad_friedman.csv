@@ -1,0 +1,6 @@
+semilla,chi2,p_friedman,F_iman,p_iman,orden
+42,84.0547,0.0,11.9442,0.0,attention_unet > unet_pp > mednext > transunet > deeplabv3p > unet > swin_unet > segformer > unetr
+123,62.0841,0.0,8.4868,0.0,unet_pp > attention_unet > mednext > segformer > unet > unetr > transunet > deeplabv3p > swin_unet
+777,63.5756,0.0,8.7132,0.0,attention_unet > unet_pp > transunet > deeplabv3p > swin_unet > mednext > unet > unetr > segformer
+2024,60.5912,0.0,8.2614,0.0,attention_unet > unet_pp > transunet > unet > mednext > swin_unet > deeplabv3p > unetr > segformer
+31415,55.6674,0.0,7.5261,0.0,attention_unet > unet_pp > deeplabv3p > mednext > unet > transunet > swin_unet > segformer > unetr

@@ -1,0 +1,10 @@
+rival,prueba,n_img,n_sem_orig,n_sem_rival,dice_orig,dice_rival,dif_media,p,p_holm,cliff,ic95,significativo_holm,efecto_relevante,supera_margen,gana_original
+lacca_eje_fijo,T1 Wilcoxon (imagen),80,5,5,0.570325,0.573189,-0.002864,0.660056,1.0,-0.013437,,False,False,False,False
+lacca_eje_fijo,T2 Bootstrap pareado,80,5,5,0.570325,0.573189,-0.002864,0.6338,1.0,-0.013437,"[-0.0148, 0.0086]",False,False,False,False
+lacca_eje_fijo,T3 Mann-Whitney (semillas),80,5,5,0.570325,0.573189,-0.002864,1.0,1.0,0.04,,False,False,False,False
+lacca_sin_asimetria,T1 Wilcoxon (imagen),80,5,5,0.570325,0.569492,0.000833,0.933788,1.0,-0.003125,,False,False,False,False
+lacca_sin_asimetria,T2 Bootstrap pareado,80,5,5,0.570325,0.569492,0.000833,0.8888,1.0,-0.003125,"[-0.0117, 0.0135]",False,False,False,False
+lacca_sin_asimetria,T3 Mann-Whitney (semillas),80,5,5,0.570325,0.569492,0.000833,1.0,1.0,0.04,,False,False,False,False
+lacca_global,T1 Wilcoxon (imagen),80,5,5,0.570325,0.559401,0.010924,0.39576,1.0,0.02375,,False,False,True,False
+lacca_global,T2 Bootstrap pareado,80,5,5,0.570325,0.559401,0.010924,0.2508,1.0,0.02375,"[-0.0080, 0.0294]",False,False,True,False
+lacca_global,T3 Mann-Whitney (semillas),80,5,5,0.570325,0.559401,0.010924,0.547619,1.0,0.28,,False,True,True,False
