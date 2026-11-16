@@ -1,0 +1,53 @@
+{
+  "lacca_eje_fijo": {
+    "lr": 0.0004335,
+    "weight_decay": 6.14e-06,
+    "batch_size": 8,
+    "params_modelo": {
+      "radius": 1,
+      "key_dim": 8,
+      "value_dim": 16,
+      "tau": 0.05,
+      "eps": 0.001,
+      "theta_max": 0.17453292519943295,
+      "gamma_init": 0.0,
+      "axis_init_std": 0.0
+    },
+    "_intento": 2,
+    "_dice_val_hpo": 0.60258
+  },
+  "lacca_sin_asimetria": {
+    "lr": 0.0004335,
+    "weight_decay": 6.14e-06,
+    "batch_size": 8,
+    "params_modelo": {
+      "radius": 1,
+      "key_dim": 8,
+      "value_dim": 16,
+      "tau": 0.05,
+      "eps": 0.001,
+      "theta_max": 0.17453292519943295,
+      "gamma_init": 0.0,
+      "axis_init_std": 0.0
+    },
+    "_intento": 2,
+    "_dice_val_hpo": 0.60258
+  },
+  "lacca_global": {
+    "lr": 0.0004335,
+    "weight_decay": 6.14e-06,
+    "batch_size": 8,
+    "params_modelo": {
+      "radius": 1,
+      "key_dim": 8,
+      "value_dim": 16,
+      "tau": 0.05,
+      "eps": 0.001,
+      "theta_max": 0.17453292519943295,
+      "gamma_init": 0.0,
+      "axis_init_std": 0.0
+    },
+    "_intento": 2,
+    "_dice_val_hpo": 0.60258
+  }
+}

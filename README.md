@@ -117,3 +117,14 @@ presupuesto).
   note   = {Código: https://github.com/camilo0709/entregable2}
 }
 ```
+
+## Entregable 3 · LACCA-UNet
+
+Autores: **Mujica Camilo y Romero Carlos**.
+
+- Código: `codigo/e3/` · Pruebas: `pip install -r requirements-train.txt && pytest codigo/e3/tests`
+- Resultados: `resultados/e3/` · Tabla maestra: `experiments/tabla_maestra.csv` · Protocolo: `experiments/protocolo.md`
+- Informe: capítulos `libro/book/e3_*.md` (`jupyter-book build libro/`)
+- Fichas: `MODEL_CARD.md`, `DATA_STATEMENT.md`, `CITATION.cff`
+- Semilla global: 42 (semillas del benchmark en el protocolo).
+- Despliegue: modelos ONNX (metadatos en `artifacts/`); el tablero Dash/Render no está construido.

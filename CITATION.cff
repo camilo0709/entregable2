@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Si usa este trabajo, cítelo así."
+title: "LACCA-UNet: atención cruzada contralateral con eje aprendido para segmentación de lesiones de TB (TBX11K)"
+authors:
+  - family-names: Mujica
+    given-names: Camilo
+  - family-names: Romero
+    given-names: Carlos
+repository-code: "https://github.com/camilo0709/entregable2"
+date-released: "2026-11-16"

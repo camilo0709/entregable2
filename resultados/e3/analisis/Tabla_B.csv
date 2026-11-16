@@ -1,0 +1,10 @@
+puesto,modelo,rango_medio,dice_medio
+1,attention_unet,3.0,0.567843
+2,unet_pp,3.4813,0.551824
+3,mednext,4.8875,0.509415
+4,transunet,5.0438,0.504771
+5,deeplabv3p,5.2562,0.500706
+6,unet,5.3812,0.49845
+7,swin_unet,5.7188,0.475774
+8,unetr,6.1063,0.476258
+9,segformer,6.125,0.474047

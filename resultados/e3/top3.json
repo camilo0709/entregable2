@@ -1,0 +1,55 @@
+{
+  "criterio": "media dice_val, 5 semillas base, validación",
+  "top": [
+    "attention_unet",
+    "unet_pp",
+    "mednext"
+  ],
+  "ranking": [
+    {
+      "modelo": "attention_unet",
+      "dice_val_medio": 0.56939,
+      "sd": 0.02373
+    },
+    {
+      "modelo": "unet_pp",
+      "dice_val_medio": 0.56684,
+      "sd": 0.03172
+    },
+    {
+      "modelo": "mednext",
+      "dice_val_medio": 0.54173,
+      "sd": 0.01237
+    },
+    {
+      "modelo": "deeplabv3p",
+      "dice_val_medio": 0.50193,
+      "sd": 0.01143
+    },
+    {
+      "modelo": "swin_unet",
+      "dice_val_medio": 0.50069,
+      "sd": 0.01385
+    },
+    {
+      "modelo": "transunet",
+      "dice_val_medio": 0.49957,
+      "sd": 0.0089
+    },
+    {
+      "modelo": "unet",
+      "dice_val_medio": 0.48405,
+      "sd": 0.02007
+    },
+    {
+      "modelo": "segformer",
+      "dice_val_medio": 0.46565,
+      "sd": 0.01003
+    },
+    {
+      "modelo": "unetr",
+      "dice_val_medio": 0.46155,
+      "sd": 0.01639
+    }
+  ]
+}
