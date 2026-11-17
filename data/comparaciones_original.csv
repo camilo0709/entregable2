@@ -1,0 +1,10 @@
+rival,prueba,n_img,n_sem_orig,n_sem_rival,dice_orig,dice_rival,dif_media,p,p_holm,cliff,ic95,significativo_holm,efecto_relevante,supera_margen,gana_original
+attention_unet,T1 Wilcoxon (imagen),80,10,10,0.56515,0.55953,0.005619,0.601032,1.0,0.007812,,False,False,False,False
+attention_unet,T2 Bootstrap pareado,80,10,10,0.56515,0.55953,0.005619,0.4908,1.0,0.007812,"[-0.0104, 0.0216]",False,False,False,False
+attention_unet,T3 Mann-Whitney (semillas),80,10,10,0.56515,0.55953,0.005619,0.623176,1.0,0.14,,False,False,False,False
+unet_pp,T1 Wilcoxon (imagen),80,10,10,0.56515,0.557381,0.007768,0.41442,1.0,0.017656,,False,False,False,False
+unet_pp,T2 Bootstrap pareado,80,10,10,0.56515,0.557381,0.007768,0.3314,1.0,0.017656,"[-0.0077, 0.0233]",False,False,False,False
+unet_pp,T3 Mann-Whitney (semillas),80,10,10,0.56515,0.557381,0.007768,0.623176,1.0,0.14,,False,False,False,False
+mednext,T1 Wilcoxon (imagen),80,10,10,0.56515,0.510504,0.054646,0.000935,0.006544,0.162969,,True,True,True,True
+mednext,T2 Bootstrap pareado,80,10,10,0.56515,0.510504,0.054646,0.0001,0.0009,0.162969,"[0.0269, 0.0825]",True,True,True,True
+mednext,T3 Mann-Whitney (semillas),80,10,10,0.56515,0.510504,0.054646,0.000246,0.001969,0.98,,True,True,True,True
