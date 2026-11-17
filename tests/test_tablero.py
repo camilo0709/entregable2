@@ -46,3 +46,10 @@ def test_tablas_y_figuras():
 def test_paginas_registradas():
     import app, dash
     assert {p["path"] for p in dash.page_registry.values()} == {"/", "/eda", "/modelos"}
+
+
+def test_png_16_bits_no_se_satura():
+    a = (np.random.rand(600, 600) * 60000).astype("uint16")
+    b = io.BytesIO(); Image.fromarray(a).save(b, "PNG")
+    x = inf.validar_y_preparar(b.getvalue())
+    assert x.std() > 30 and x.min() >= 0 and x.max() <= 255

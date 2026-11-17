@@ -60,7 +60,7 @@ layout = html.Div([
             dbc.Col([html.Label("Modelo"), dcc.Dropdown(id="p-modelo", options=MODELOS, value="lacca_unet", clearable=False),
                      html.Label("Radiografía de ejemplo", className="mt-2"),
                      dcc.Dropdown(id="p-ej", options=[{"label": e, "value": e} for e in EJEMPLOS], value=EJEMPLOS[0], clearable=True),
-                     dcc.Upload(id="p-up", children=html.Div(["O arrastre una imagen (PNG/JPEG, ≤ 8 MB)"]),
+                     dcc.Upload(id="p-up", children=html.Div(["O arrastre o pulse para subir una imagen (PNG/JPEG, ≤ 8 MB)"], id="p-up-txt"),
                                 style={"border": "1px dashed #999", "borderRadius": 8, "padding": 14, "textAlign": "center", "marginTop": 8}),
                      html.Label("Umbral", className="mt-2"),
                      dcc.Slider(id="p-umb", min=0.1, max=0.9, step=0.05, value=0.5, marks={0.1: "0,1", 0.5: "0,5", 0.9: "0,9"}),
@@ -105,6 +105,14 @@ layout = html.Div([
 ])
 
 
+@callback(Output("p-up-txt", "children"), Output("p-ej", "value"), Input("p-up", "contents"), State("p-up", "filename"),
+          State("p-ej", "value"), prevent_initial_call=True)
+def _subida(contenido, nombre, ejemplo):
+    if not contenido:
+        return no_update, no_update
+    return [html.B(f"✔ Imagen cargada: {nombre}"), html.Br(), "Pulse «Predecir» para usarla."], None
+
+
 def _leer(contenido, ejemplo):
     if contenido:
         raw = base64.b64decode(contenido.split(",", 1)[1])
@@ -119,8 +127,8 @@ def _leer(contenido, ejemplo):
 
 @callback(Output("p-out", "children"), Output("p-aviso", "children"), Input("p-go", "n_clicks"),
           State("p-modelo", "value"), State("p-ej", "value"), State("p-up", "contents"),
-          State("p-umb", "value"), State("p-temp", "value"), prevent_initial_call=True)
-def predecir(n, modelo, ejemplo, contenido, umbral, usar_t):
+          State("p-umb", "value"), State("p-temp", "value"), State("p-up", "filename"), prevent_initial_call=True)
+def predecir(n, modelo, ejemplo, contenido, umbral, usar_t, nombre_archivo=None):
     try:
         img, gt = _leer(contenido, None if contenido else ejemplo)
         T = 1.0
@@ -132,7 +140,8 @@ def predecir(n, modelo, ejemplo, contenido, umbral, usar_t):
     except Exception as e:  # nunca detener la app
         return no_update, dbc.Alert(f"No se pudo ejecutar el modelo: {e}", color="danger")
     area = mask.mean()
-    datos = [f"Latencia: {ms:.0f} ms", f"Área predicha: {area:.1%}", f"Prob. máxima: {prob.max():.2f}"]
+    origen = f"Imagen subida: {nombre_archivo or 'archivo'}" if contenido else f"Ejemplo: {ejemplo}"
+    datos = [origen, f"Latencia: {ms:.0f} ms", f"Área predicha: {area:.1%}", f"Prob. máxima: {prob.max():.2f}"]
     if gt is not None:
         datos.append(f"Dice frente al GT: {inf.dice(mask, gt):.3f}")
     if usar_t and modelo in CON_CAL:
