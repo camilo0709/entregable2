@@ -1,4 +1,4 @@
-import base64, os
+import base64, io, os
 import numpy as np
 import dash
 import dash_bootstrap_components as dbc
@@ -67,7 +67,11 @@ layout = html.Div([
                      dbc.Checkbox(id="p-temp", label="Probabilidad calibrada (escalado de temperatura, si existe)", value=True, className="mt-2"),
                      dbc.Button("Predecir", id="p-go", color="primary", className="mt-3 w-100"),
                      html.Div(id="p-aviso", className="mt-2")], md=4),
-            dbc.Col(dcc.Loading(html.Div(id="p-out")), md=8)])],
+            dbc.Col([dcc.Loading(html.Div(id="p-out")),
+                     html.Div([dbc.Button("⬇ Descargar imagen con máscara", id="p-dl-img", color="secondary", outline=True, className="me-2"),
+                               dbc.Button("⬇ Descargar solo la máscara", id="p-dl-msk", color="secondary", outline=True)],
+                              id="p-dl-fila", style={"display": "none"}, className="mt-2")], md=8)]),
+        dcc.Store(id="p-png"), dcc.Download(id="p-descarga")],
         "Inferencia con ONNX Runtime en CPU. La incertidumbre es la entropía binaria de la probabilidad por píxel."),
 
     tarjeta("Diagnóstico del modelo", [
@@ -125,7 +129,27 @@ def _leer(contenido, ejemplo):
     raise inf.EntradaInvalida("Seleccione un ejemplo o suba una imagen.")
 
 
-@callback(Output("p-out", "children"), Output("p-aviso", "children"), Input("p-go", "n_clicks"),
+def _png_b64(arr):
+    b = io.BytesIO(); Image.fromarray(arr).save(b, "PNG")
+    return base64.b64encode(b.getvalue()).decode()
+
+
+@callback(Output("p-descarga", "data"), Input("p-dl-img", "n_clicks"), Input("p-dl-msk", "n_clicks"),
+          State("p-png", "data"), prevent_initial_call=True)
+def descargar(n_img, n_msk, guardado):
+    if not guardado:
+        return no_update
+    try:
+        pulsado = dash.ctx.triggered_id
+    except Exception:  # fuera de un callback (pruebas)
+        pulsado = None
+    clave = "mascara" if pulsado == "p-dl-msk" else "overlay"
+    nombre = f"{guardado['modelo']}_{clave}.png"
+    return dcc.send_bytes(base64.b64decode(guardado[clave]), nombre)
+
+
+@callback(Output("p-out", "children"), Output("p-aviso", "children"), Output("p-png", "data"),
+          Output("p-dl-fila", "style"), Input("p-go", "n_clicks"),
           State("p-modelo", "value"), State("p-ej", "value"), State("p-up", "contents"),
           State("p-umb", "value"), State("p-temp", "value"), State("p-up", "filename"), prevent_initial_call=True)
 def predecir(n, modelo, ejemplo, contenido, umbral, usar_t, nombre_archivo=None):
@@ -136,9 +160,9 @@ def predecir(n, modelo, ejemplo, contenido, umbral, usar_t, nombre_archivo=None)
             T = float(tabla("calibracion").set_index("modelo").loc[modelo, "T"])
         prob, mask, inc, ms = inf.predecir(modelo, img, umbral, T)
     except inf.EntradaInvalida as e:
-        return no_update, dbc.Alert(str(e), color="danger")
+        return no_update, dbc.Alert(str(e), color="danger"), no_update, no_update
     except Exception as e:  # nunca detener la app
-        return no_update, dbc.Alert(f"No se pudo ejecutar el modelo: {e}", color="danger")
+        return no_update, dbc.Alert(f"No se pudo ejecutar el modelo: {e}", color="danger"), no_update, no_update
     area = mask.mean()
     origen = f"Imagen subida: {nombre_archivo or 'archivo'}" if contenido else f"Ejemplo: {ejemplo}"
     datos = [origen, f"Latencia: {ms:.0f} ms", f"Área predicha: {area:.1%}", f"Prob. máxima: {prob.max():.2f}"]
@@ -153,7 +177,8 @@ def predecir(n, modelo, ejemplo, contenido, umbral, usar_t, nombre_archivo=None)
                  dbc.Col(fig(prob, "Probabilidad de lesión", cmap="Reds", escala=(0, 1)), md=4),
                  dbc.Col(fig(inc, "Incertidumbre (bits)", cmap="Viridis", escala=(0, 1)), md=4)]),
         html.P(" · ".join(datos), className="fw-bold"),
-        html.Div("Las zonas de alta incertidumbre rodean los bordes de la lesión; allí conviene la revisión humana.", className="insight")]), None
+        html.Div("Las zonas de alta incertidumbre rodean los bordes de la lesión; allí conviene la revisión humana.", className="insight")]), None, \
+        {"modelo": modelo, "overlay": _png_b64(sup), "mascara": _png_b64((mask * 255).astype("uint8"))}, {"display": "block"}
 
 
 @callback(Output("d-caso", "figure"), Output("d-conf", "figure"), Output("d-cal", "children"),
