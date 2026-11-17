@@ -60,9 +60,9 @@ redacción; los autores revisaron el contenido, pero no se garantiza la ausencia
 Los autores asumen la responsabilidad del contenido de este trabajo, incluido el que se elaboró con apoyo de
 herramientas de IA.
 
-Fecha: ____ de noviembre de 2026
+Fecha: 15 de noviembre de 2026
 
 | Autor | Firma (nombre completo) |
 |---|---|
-| Mujica Camilo | ______________________ |
-| Romero Carlos | ______________________ |
+| Mujica Camilo | Camilo Andres Mujica Escorcia |
+| Romero Carlos | Carlos Isaac Romero Mendoza |
