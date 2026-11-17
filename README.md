@@ -129,4 +129,7 @@ Autores: **Mujica Camilo y Romero Carlos**.
 - Informe: capítulos `libro/book/e3_*.md` (`jupyter-book build libro/`)
 - Fichas: `MODEL_CARD.md`, `DATA_STATEMENT.md`, `CITATION.cff`
 - Semilla global: 42 (semillas del benchmark en el protocolo).
-- Despliegue: modelos ONNX (metadatos en `artifacts/`); el tablero Dash/Render no está construido.
+- **Tablero en línea:** https://tb-segmentacion-dash.onrender.com (Dash + ONNX Runtime en CPU). En el plan gratuito de Render
+  el servicio se duerme; la primera carga puede tardar cerca de un minuto.
+- Despliegue: `render.yaml` y `requirements.txt` (solo inferencia); los pesos ONNX están en el Release `pesos-onnx-v1`
+  y sus SHA-256 en `artifacts/perfil_modelos.json`. Pruebas del tablero: `pytest tests`.

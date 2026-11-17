@@ -9,6 +9,8 @@
   entrenar. La evidencia de lo que se decidió y cuándo es el hash SHA-256 (`resultados/e3/protocolo.sha256`) y las
   enmiendas E1–E7 (`docs/e3/PREREGISTRO_ENMIENDAS.md`). Por ello el análisis se presenta con esta limitación y no como
   un preregistro estricto.
+- **Tablero:** https://tb-segmentacion-dash.onrender.com (código en `app.py`, `pages/`, `src/`; despliegue con `render.yaml`).
+  Los pesos ONNX se descargan del Release `pesos-onnx-v1` y se verifican con su SHA-256. UNETR no se sirve en vivo por memoria.
 - Semilla global documentada; semillas base 42, 123, 777, 2024, 31415 y extra 7, 11, 99, 1234, 9999.
 - ONNX: metadatos y verificación de ida y vuelta en `artifacts/` (los `.onnx` pesados no se versionan).
 
