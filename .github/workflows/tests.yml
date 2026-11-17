@@ -2,7 +2,7 @@ name: tests
 on:
   push:
     branches: [entregable3, main]
-    paths: ["codigo/e3/**"]
+    paths: ["codigo/e3/**", "src/**", "pages/**", "tests/**", "app.py", "requirements.txt"]
   pull_request:
 jobs:
   pytest:
@@ -13,3 +13,4 @@ jobs:
         with: { python-version: "3.11" }
       - run: pip install torch --index-url https://download.pytorch.org/whl/cpu && pip install pytest numpy
       - run: pytest codigo/e3/tests -q
+      - run: pip install -r requirements.txt && pytest tests -q
