@@ -53,3 +53,14 @@ def test_png_16_bits_no_se_satura():
     b = io.BytesIO(); Image.fromarray(a).save(b, "PNG")
     x = inf.validar_y_preparar(b.getvalue())
     assert x.std() > 30 and x.min() >= 0 and x.max() <= 255
+
+
+def test_descarga_overlay_y_mascara():
+    import base64, app
+    from pages import modelos as M
+    if not (inf.DIR_PESOS / "unet.onnx").exists():
+        pytest.skip("sin pesos locales")
+    out, av, st, estilo = M.predecir(1, "unet", "tb0018", None, 0.5, False)
+    assert estilo == {"display": "block"} and av is None
+    r = M.descargar(1, None, st)
+    assert r["filename"].endswith("_overlay.png") and base64.b64decode(r["content"])[:4] == b"\x89PNG"
