@@ -1,8 +1,8 @@
 # Sección 6 · Benchmark final: inferencia estadística
 
-```{admonition} Resultados del Entregable 2
+```{admonition} Benchmark inicial (validación)
 :class: warning
-Las cifras de este capítulo son las del Entregable 2 (validación, 8 arquitecturas válidas). Los resultados finales sobre el test sellado, con Attention U-Net corregido, están en el capítulo 10 (`e3_03_resultados`).
+Las cifras de este capítulo corresponden al benchmark inicial sobre validación (8 arquitecturas válidas). Los resultados finales sobre el test sellado, con Attention U-Net corregido, están en el capítulo 10 (`e3_03_resultados`).
 ```
 
 Esta sección responde RQ1–RQ4 (Sección 1.2) con la batería de pruebas del
