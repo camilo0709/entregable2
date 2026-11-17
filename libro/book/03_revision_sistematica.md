@@ -29,8 +29,8 @@ con acceso institucional y regenerar `codigo/build_figuras_rev.py`.
 
 | Fuente | Rol | Estado (2026-10-21) |
 |---|---|---|
-| **Scopus** | principal | cadenas selladas Sección 3.1.3; conteo pendiente de acceso institucional |
-| **IEEE Xplore** | principal | idem |
+| **Scopus** | principal | **S1 ejecutada el 2026-11-16: 656 resultados** (2018–2026, mínimo que permite el acceso); **S2: 2 577 resultados** (2018–2026); **S3: 580 resultados** (2018–2026) |
+| **IEEE Xplore** | principal | **S1 ejecutada el 2026-11-16: 53 resultados** (2012–2026); **S2: 584 resultados** (2016–2026); S3 sin cadena definida para IEEE |
 | **arXiv** | complementaria | **ejecutada vía API oficial** (conteos abajo) |
 | Web of Science | — | no disponible; Scopus cubre el requisito Q1 |
 
@@ -46,12 +46,14 @@ segmentación biomédica.
 ```text
 Scopus:   TITLE-ABS-KEY(("tuberculosis") AND ("chest x-ray" OR "chest radiograph"
             OR "CXR") AND ("segmentation" OR "lesion*")) AND PUBYEAR > 2017
-IEEE:     ("tuberculosis") AND ("chest x-ray" OR "chest radiograph")
-            AND ("segmentation")   [Search Metadata: Abstract/Title/Keywords]
+IEEE:     ("Abstract":tuberculosis OR "Document Title":tuberculosis)
+            AND ("Abstract":"chest x-ray" OR "Abstract":"chest radiograph" OR "Abstract":CXR)
+            AND ("Abstract":segmentation)      [IEEE Xplore, Command Search]
 arXiv:    abs:"tuberculosis" AND abs:"segmentation"
             AND (abs:"chest x-ray" OR abs:"chest radiograph")
 ```
 
+Ejecución Scopus (2026-11-16, 2018–2026): **656 registros**.
 Ejecución arXiv (API `export.arxiv.org`, 2026-10-21): **12 registros**.
 
 **S2 — Arquitecturas (estado del arte de segmentación biomédica):**
@@ -60,10 +62,13 @@ Ejecución arXiv (API `export.arxiv.org`, 2026-10-21): **12 registros**.
 Scopus:   TITLE-ABS-KEY(("medical image segmentation") AND ("benchmark"
             OR "comparative" OR "review")) AND PUBYEAR > 2017
 IEEE:     ("medical image segmentation") AND ("benchmark" OR "comparative study")
+            [IEEE Xplore, filtro de años 2016–2026]
 arXiv:    abs:"medical image segmentation" AND (abs:"benchmark" OR abs:"comparison")
             AND (abs:"tuberculosis")
 ```
 
+Ejecución Scopus (2026-11-16, 2018–2026): **2 577 registros**.
+Ejecución IEEE Xplore (2026-11-16, 2016–2026): **584 registros**.
 Ejecución arXiv: **1 registro** (el resto del Flujo B procede de las 10
 "revisión de semillas": los papers originales de las arquitecturas detectadas en
 los estudios del Flujo A y en sus cadenas de citas).
@@ -74,6 +79,8 @@ los estudios del Flujo A y en sus cadenas de citas).
 Scopus:   TITLE-ABS-KEY(("tuberculosis") AND ("explainab*" OR "interpretab*"
             OR "grad-cam" OR "saliency")) AND PUBYEAR > 2017
 ```
+
+Ejecución Scopus (2026-11-16, 2018–2026): **580 registros**. No alimenta el diagrama PRISMA (solo respalda la tendencia de RQ4).
 
 ### 3.1.3 Criterios de inclusión y exclusión
 
@@ -91,13 +98,21 @@ Scopus:   TITLE-ABS-KEY(("tuberculosis") AND ("explainab*" OR "interpretab*"
 
 *Fig. 3.1.* Flujo PRISMA 2020 doble: **A** = estudios de dominio (TB-CXR);
 **B** = selección de arquitecturas. `s/d` = conteo por sellar al ejecutar
-Scopus/IEEE (Sección 3.1.2); los conteos arXiv **ya están ejecutados y son
+Scopus S3 = 580 (no entra al flujo del PRISMA); Scopus flujo A = 656 y flujo B = 2 577 (2018–2026), IEEE flujo A = 53 y flujo B = 584 (2026-11-16); los conteos arXiv **ya están ejecutados y son
 reproducibles** con la API oficial y las cadenas textuales de Sección 3.1.2. El script
 `codigo/build_figuras_rev.py` regenera la figura al sustituir `COUNTS`.
 
 ### 3.1.5 Amenazas del protocolo
 
-- **Acceso.** Sin acceso institucional, los conteos Scopus/IEEE quedan como
+- **IEEE (S1).** Se ejecutó en Command Search el 2026-11-16 con resultado de 53 documentos, sin filtro de años
+  (el rango de las publicaciones devueltas fue 2012–2026, más amplio que el 2015–2026 de la Sección 3.1.1). La cadena S2
+  se ejecutó con filtro 2016–2026 (584 documentos), un año más tarde que el inicio declarado (2015). Los números
+  posteriores del PRISMA (duplicados, exclusiones e incluidos) **no se recalcularon** con esos documentos; el cribado
+  de ambos flujos se hizo antes de contar IEEE.
+- **Scopus (S1).** El acceso institucional solo permitió consultar desde 2018 (656 documentos), coherente con el
+  `PUBYEAR > 2017` de la cadena pero más corto que el periodo 2015–2026 declarado.
+- **S3.** Solo tiene cadena de Scopus (580 registros, 2018–2026); no tiene cadena de IEEE y no alimenta el PRISMA.
+- **Acceso.** Los conteos pendientes quedan como
   variables del PRISMA; las cadenas están selladas para ejecución idéntica.
 - **Publicación sesgada hacia positivos.** La literatura de TB tiende a reportar
   mejoras sobre baselines débiles (se analiza en Sección 3.3 "sesgo de reporte").

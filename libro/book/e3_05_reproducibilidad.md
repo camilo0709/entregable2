@@ -4,6 +4,11 @@
 - Cuadernos Colab: `codigo/e3/notebooks/colab_01..05`.
 - Resultados: `resultados/e3/` (tabla maestra `experiments/tabla_maestra.csv`).
 - Protocolo: `docs/e3/protocolo.md`, enmiendas `docs/e3/PREREGISTRO_ENMIENDAS.md`, hash en `resultados/e3/protocolo.sha256`.
+- **Protocolo y etiqueta:** el protocolo está fijado con el tag `protocolo-v1` (commit `c0b7e96`, 15-nov-2026). Ese
+  commit es posterior a la ejecución de los entrenamientos: el protocolo no estuvo publicado en el repositorio antes de
+  entrenar. La evidencia de lo que se decidió y cuándo es el hash SHA-256 (`resultados/e3/protocolo.sha256`) y las
+  enmiendas E1–E7 (`docs/e3/PREREGISTRO_ENMIENDAS.md`). Por ello el análisis se presenta con esta limitación y no como
+  un preregistro estricto.
 - Semilla global documentada; semillas base 42, 123, 777, 2024, 31415 y extra 7, 11, 99, 1234, 9999.
 - ONNX: metadatos y verificación de ida y vuelta en `artifacts/` (los `.onnx` pesados no se versionan).
 
