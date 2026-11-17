@@ -25,8 +25,6 @@ Con R1 y R2 y sin R3, la nota máxima del Cuadro 7 es **4.0**.
 
 GT experto, más semillas en robustez, eje fijo como línea base principal, estudio en datos con asimetría real.
 
-## Declaración de autoría y uso de herramientas de IA
+## Declaración de autoría y uso de herramientas
 
-Autores: **Mujica Camilo y Romero Carlos**. Se usaron asistentes de IA (Claude, Anthropic) como apoyo en
-programación, análisis y redacción. Los autores revisaron y son responsables del contenido. La declaración
-firmada la completan los autores.
+Ver la declaración completa y firmada en el último capítulo ([Reproducibilidad y declaración](e3_05_reproducibilidad.md)).
