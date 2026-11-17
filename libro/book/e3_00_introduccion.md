@@ -27,5 +27,5 @@ H1 se sostiene (frente a U-Net: 0.5651 vs 0.4985). H2 y H3 **no se sostienen** c
 
 1. Formulación con equivarianza exacta al flip, identidad a γ = 0 y cota de Lipschitz (§ Método).
 2. Implementación con 25 pruebas unitarias y exportación ONNX verificada (ida y vuelta, tolerancia 1e-4).
-3. Protocolo preregistrado con enmiendas E1–E7 y hash SHA-256, evaluación con 13 modelos/variantes.
+3. Protocolo preregistrado con enmiendas E1–E7 y hash SHA-256, evaluación con 14 modelos/variantes (90 corridas).
 4. Informe transparente de un resultado negativo parcial.

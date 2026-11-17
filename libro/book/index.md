@@ -1,11 +1,19 @@
 # TBX11K · Benchmark de Deep Learning para la segmentación de lesiones de tuberculosis
 
-**Entregable 2 — Deep Learning** · Equipo: Mujica Camilo y Romero Carlos · 2026
+**Entregable 2 y 3 — Deep Learning** · Equipo: Mujica Camilo y Romero Carlos · 2026
 
 Este informe ejecuta un benchmark controlado de **10 arquitecturas × 5 semillas**
 (2 baseline incluidos) sobre el dataset **TBX11K**, con un *ground truth* de
 prueba congelado (plata, D1-R1) y un protocolo de inferencia estadística
 predefinido. Cada capítulo cierra con decisiones explícitas, no con descripción.
+
+```{admonition} Cómo leer este libro
+:class: important
+Los capítulos 1 a 8 conservan el informe del **Entregable 2** (cifras de validación y 40 corridas válidas, margen δ = 0,02).
+El **Entregable 3 (capítulo 10)** lo reemplaza como resultado final: test sellado, 90 corridas de 14 modelos/variantes,
+10 semillas para el original y el top 3, margen δ = 0,01 y Attention U-Net ya corregido. Si una cifra difiere,
+vale la del capítulo 10. La trazabilidad está en el capítulo 9.
+```
 
 ## Estructura y ponderación (rúbrica)
 
@@ -19,6 +27,8 @@ predefinido. Cada capítulo cierra con decisiones explícitas, no con descripci�
 | 6 | [Benchmark final (inferencia estadística)](06_benchmark_final.md) | 20 % |
 | 7 | [Ruta metodológica (modality I1–I8)](07_ruta_metodologica.md) | 15 % |
 | 8 | [Reproducibilidad, ética y comunicación](08_reproducibilidad.md) | 10 % |
+| 9 | [Trazabilidad de correcciones](09_trazabilidad_correcciones.md) | — |
+| 10 | [Entregable 3 · LACCA-UNet](e3_00_introduccion.md) | Entregable 3 |
 
 ## Preguntas de investigación (RQ)
 

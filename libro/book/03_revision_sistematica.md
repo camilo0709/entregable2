@@ -18,8 +18,8 @@
 >   lesión, o los modelos "aciertan por las razones equivocadas"?
 
 Las cifras de este capítulo se sellan con fecha de consulta (2026-10-21). Los
-conteos `s/d` del PRISMA se sustituyen al ejecutar las cadenas Sección 3.1.3 en Scopus/IEEE
-con acceso institucional y regenerar `codigo/build_figuras_rev.py`.
+conteos de Scopus e IEEE se ejecutaron el 2026-11-16 (ver abajo) y las figuras se regeneraron con
+`codigo/build_figuras_rev.py`; los números de cribado posteriores no se recalcularon.
 
 ---
 
@@ -97,10 +97,11 @@ Ejecución Scopus (2026-11-16, 2018–2026): **580 registros**. No alimenta el d
 ![](figs_rev/prisma.png)
 
 *Fig. 3.1.* Flujo PRISMA 2020 doble: **A** = estudios de dominio (TB-CXR);
-**B** = selección de arquitecturas. `s/d` = conteo por sellar al ejecutar
-Scopus S3 = 580 (no entra al flujo del PRISMA); Scopus flujo A = 656 y flujo B = 2 577 (2018–2026), IEEE flujo A = 53 y flujo B = 584 (2026-11-16); los conteos arXiv **ya están ejecutados y son
-reproducibles** con la API oficial y las cadenas textuales de Sección 3.1.2. El script
-`codigo/build_figuras_rev.py` regenera la figura al sustituir `COUNTS`.
+**B** = selección de arquitecturas. Los conteos de Scopus (656 y 2 577; 2018–2026) e IEEE (53 y 584) se
+ejecutaron el 2026-11-16, y los de arXiv (12 y 1) el 2026-10-21 con la API oficial y las cadenas textuales de la
+Sección 3.1.2. Scopus S3 = 580 no entra al flujo del PRISMA. Los números de cribado posteriores (duplicados,
+exclusiones, incluidos) **no se recalcularon** con los totales nuevos. El script
+`codigo/build_figuras_rev.py` regenera la figura al actualizar `COUNTS`.
 
 ### 3.1.5 Amenazas del protocolo
 

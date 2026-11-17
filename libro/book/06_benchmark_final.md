@@ -1,5 +1,10 @@
 # Sección 6 · Benchmark final: inferencia estadística
 
+```{admonition} Resultados del Entregable 2
+:class: warning
+Las cifras de este capítulo son las del Entregable 2 (validación, 8 arquitecturas válidas). Los resultados finales sobre el test sellado, con Attention U-Net corregido, están en el capítulo 10 (`e3_03_resultados`).
+```
+
 Esta sección responde RQ1–RQ4 (Sección 1.2) con la batería de pruebas del
 preregistro. La métrica primaria declarada es el **Dice medio por imagen en
 `test_pos`** (80 casos, GT de plata D1-R1), con IC 95 % por bootstrap y

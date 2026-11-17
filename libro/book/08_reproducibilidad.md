@@ -147,7 +147,7 @@ modalidades no representadas en TBX11K, cuantificación de progreso.
 
 | Entregable de la rúbrica | Dónde está |
 |---|---|
-| Informe en Jupyter Book con ejecución reproducible | `libro/` → https://camilo0709.github.io/entregable2/ (CI ejecuta celdas en cada build) |
+| Informe en Jupyter Book con ejecución reproducible | `libro/` → https://camilo0709.github.io/entregable3/ (CI ejecuta celdas en cada build) |
 | Código completo y documentado (EDA, 10 modelos, baselines, ajuste/sobreajuste, estadística, robustez, interpretabilidad) | `codigo/` (Secciones 2, 4, 6, 7 del informe) |
 | Dataset o instrucciones verificables + Data Card | `README.md` Sección 3 + Sección 1.4 (Data Card con hashes) |
 | Ficha de ruta metodológica (modalidad, recorrido I1–I8, evidencia de Tablas A/B/C) | Sección 7 (pestaña de resultados al cerrar Colab) |
