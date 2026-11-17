@@ -37,6 +37,11 @@ def validar_y_preparar(raw: bytes) -> np.ndarray:
         raise EntradaInvalida("Formato no admitido. Use PNG, JPEG, BMP o TIFF.")
     if min(im.size) < 128:
         raise EntradaInvalida("La imagen es demasiado pequeña (mínimo 128 px por lado).")
+    if im.mode in ("I;16", "I;16L", "I;16B", "I", "F"):
+        # radiografías de 16 bits: escalar por percentiles a 0-255 (convert("L") las satura)
+        a = np.asarray(im, dtype=np.float32)
+        lo, hi = np.percentile(a, [0.5, 99.5])
+        im = Image.fromarray((np.clip((a - lo) / (hi - lo + 1e-6), 0, 1) * 255).astype(np.uint8))
     im = im.convert("L").resize((TAM, TAM), Image.BILINEAR)
     return np.asarray(im, dtype=np.float32)
 
