@@ -21,10 +21,11 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 # --------------------------------------------------------------------------- #
 # Conteos PRISMA (§3.1) — 's/d' = por ejecutar con acceso institucional
+# IEEE flujo A = 53 (Command Search, 2012–2026, consulta del 2026-11-16)
 # --------------------------------------------------------------------------- #
 COUNTS = {
     # Flujo A: estudios de dominio (TB en radiografía)
-    "A": {"scopus": "s/d", "ieee": "s/d", "arxiv": 12, "citas": 8,
+    "A": {"scopus": "s/d", "ieee": 53, "arxiv": 12, "citas": 8,
           "dup": 4, "exc_titulo": 7, "exc_texto": 3, "incl": 6},
     # Flujo B: selección de arquitecturas (Top 10)
     "B": {"scopus": "s/d", "ieee": "s/d", "arxiv": 1, "semillas": 10,
