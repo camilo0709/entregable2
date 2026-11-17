@@ -1,6 +1,6 @@
 # TBX11K · Benchmark de Deep Learning para la segmentación de lesiones de tuberculosis
 
-**Entregable 2 y 3 — Deep Learning** · Equipo: Mujica Camilo y Romero Carlos · 2026
+**Entregable 3 — Deep Learning** · Equipo: Mujica Camilo y Romero Carlos · 2026
 
 Este informe ejecuta un benchmark controlado de **10 arquitecturas × 5 semillas**
 (2 baseline incluidos) sobre el dataset **TBX11K**, con un *ground truth* de
@@ -9,10 +9,10 @@ predefinido. Cada capítulo cierra con decisiones explícitas, no con descripci�
 
 ```{admonition} Cómo leer este libro
 :class: important
-Los capítulos 1 a 8 conservan el informe del **Entregable 2** (cifras de validación y 40 corridas válidas, margen δ = 0,02).
-El **Entregable 3 (capítulo 10)** lo reemplaza como resultado final: test sellado, 90 corridas de 14 modelos/variantes,
-10 semillas para el original y el top 3, margen δ = 0,01 y Attention U-Net ya corregido. Si una cifra difiere,
-vale la del capítulo 10. La trazabilidad está en el capítulo 9.
+Los capítulos 1 a 8 documentan el desarrollo del trabajo (problema, EDA, revisión, implementación y benchmark inicial
+sobre validación). Los **resultados finales** están en el capítulo 10: test sellado, 90 corridas de 14 modelos o
+variantes, 10 semillas para el original y el top 3, margen δ = 0,01 y Attention U-Net ya corregido. Si una cifra
+difiere, vale la del capítulo 10. Las correcciones aplicadas se trazan en el capítulo 9.
 ```
 
 ## Estructura y ponderación (rúbrica)

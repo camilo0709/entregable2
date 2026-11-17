@@ -2,8 +2,8 @@
 [![DOI](https://zenodo.org/badge/1428670308.svg)](https://doi.org/10.5281/zenodo.24294484)
 
 **Cómo citar:** Mujica, C. y Romero, C. (2026). *LACCA-UNet: atención cruzada contralateral con eje aprendido para segmentación de lesiones de TB (TBX11K)*. Zenodo. [https://doi.org/10.5281/zenodo.24294484](https://doi.org/10.5281/zenodo.24294484)
-Entregable 2 del curso de Deep Learning: **10 modelos de segmentación × 5
-semillas** sobre el dataset TBX11K, con inferencia estadística, revisión
+Entregable 3 del curso de Deep Learning: **benchmark de 14 modelos y variantes de segmentación, con un
+modelo original (LACCA-UNet)** y hasta 10 semillas, sobre el dataset TBX11K, con inferencia estadística, revisión
 sistemática, replicación del paper guía y GT de "plata" validado.
 
 📖 **Informe (Jupyter Book) publicado:**
@@ -111,9 +111,9 @@ presupuesto).
 ## Citar este trabajo
 
 ```bibtex
-@misc{entregable2tbx11k,
+@misc{entregable3tbx11k,
   title  = {Benchmark de Deep Learning para segmentación de tuberculosis sobre TBX11K},
-  author = {{Entregable 2 — Curso de Deep Learning}},
+  author = Mujica, Camilo and Romero, Carlos,
   year   = {2026},
   url    = {https://camilo0709.github.io/entregable3/},
   note   = {Código: https://github.com/camilo0709/entregable3}

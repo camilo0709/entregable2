@@ -1,6 +1,6 @@
 # Anexo · Lista de verificación de reproducibilidad
 
-> Rellena y firmada por el equipo, según la rúbrica del Entregable 2
+> Rellena y firmada por el equipo, según la rúbrica del Entregable 3
 > ("Lista de verificación de reproducibilidad completada y anexa").
 > Leyenda: Cumplido · Pendiente de resultado final (estructura entregada) ·
 > N/A no aplica (con justificación).

@@ -1,4 +1,4 @@
-# Jupyter Book — Entregable 2 Deep Learning (TBX11K)
+# Jupyter Book — Entregable 3 Deep Learning (TBX11K)
 # Build:  jupyter-book build libro/     (ejecuta los notebooks en cada build)
 # HTML:   libro/_build/html/index.html
 
@@ -24,7 +24,7 @@ parse:
 html:
   use_repository_button: true
   use_issues_button: false
-  extra_footer: "<p>Entregable 2 — Deep Learning · 2026</p>"
+  extra_footer: "<p>Entregable 3 — Deep Learning · 2026</p>"
 
 # Reemplazar con la URL real del repo (activa el botón de repositorio):
 repository:
