@@ -7,7 +7,7 @@ semillas** sobre el dataset TBX11K, con inferencia estadística, revisión
 sistemática, replicación del paper guía y GT de "plata" validado.
 
 📖 **Informe (Jupyter Book) publicado:**
-**https://camilo0709.github.io/entregable2/**
+**https://camilo0709.github.io/entregable3/**
 (build automático con cada push a `main` — ver `.github/workflows/libro.yml`)
 
 ---
@@ -115,7 +115,7 @@ presupuesto).
   title  = {Benchmark de Deep Learning para segmentación de tuberculosis sobre TBX11K},
   author = {{Entregable 2 — Curso de Deep Learning}},
   year   = {2026},
-  url    = {https://camilo0709.github.io/entregable2/},
+  url    = {https://camilo0709.github.io/entregable3/},
   note   = {Código: https://github.com/camilo0709/entregable3}
 }
 ```

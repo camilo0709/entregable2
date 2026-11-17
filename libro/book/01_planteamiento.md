@@ -1,8 +1,5 @@
 # Sección 1 · Definición del problema, preguntas de investigación y dataset
 
-
----
-
 ## 1.1 Definición formal del problema
 
 ### Formulación matemática
