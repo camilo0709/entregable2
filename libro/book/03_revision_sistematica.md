@@ -29,7 +29,7 @@ con acceso institucional y regenerar `codigo/build_figuras_rev.py`.
 
 | Fuente | Rol | Estado (2026-10-21) |
 |---|---|---|
-| **Scopus** | principal | **S1 ejecutada el 2026-11-16: 656 resultados** (2018–2026, mínimo que permite el acceso); **S2: 2 577 resultados** (2018–2026); S3 pendiente |
+| **Scopus** | principal | **S1 ejecutada el 2026-11-16: 656 resultados** (2018–2026, mínimo que permite el acceso); **S2: 2 577 resultados** (2018–2026); **S3: 580 resultados** (2018–2026) |
 | **IEEE Xplore** | principal | **S1 ejecutada el 2026-11-16: 53 resultados** (2012–2026); **S2: 584 resultados** (2016–2026); S3 sin cadena definida para IEEE |
 | **arXiv** | complementaria | **ejecutada vía API oficial** (conteos abajo) |
 | Web of Science | — | no disponible; Scopus cubre el requisito Q1 |
@@ -80,6 +80,8 @@ Scopus:   TITLE-ABS-KEY(("tuberculosis") AND ("explainab*" OR "interpretab*"
             OR "grad-cam" OR "saliency")) AND PUBYEAR > 2017
 ```
 
+Ejecución Scopus (2026-11-16, 2018–2026): **580 registros**. No alimenta el diagrama PRISMA (solo respalda la tendencia de RQ4).
+
 ### 3.1.3 Criterios de inclusión y exclusión
 
 | # | Inclusión | Exclusión |
@@ -96,7 +98,7 @@ Scopus:   TITLE-ABS-KEY(("tuberculosis") AND ("explainab*" OR "interpretab*"
 
 *Fig. 3.1.* Flujo PRISMA 2020 doble: **A** = estudios de dominio (TB-CXR);
 **B** = selección de arquitecturas. `s/d` = conteo por sellar al ejecutar
-Scopus S3 y IEEE S3 (no usadas en el flujo del PRISMA; la S3 solo tiene cadena de Scopus); Scopus flujo A = 656 y flujo B = 2 577 (2018–2026), IEEE flujo A = 53 y flujo B = 584 (2026-11-16); los conteos arXiv **ya están ejecutados y son
+Scopus S3 = 580 (no entra al flujo del PRISMA); Scopus flujo A = 656 y flujo B = 2 577 (2018–2026), IEEE flujo A = 53 y flujo B = 584 (2026-11-16); los conteos arXiv **ya están ejecutados y son
 reproducibles** con la API oficial y las cadenas textuales de Sección 3.1.2. El script
 `codigo/build_figuras_rev.py` regenera la figura al sustituir `COUNTS`.
 
@@ -109,7 +111,7 @@ reproducibles** con la API oficial y las cadenas textuales de Sección 3.1.2. El
   de ambos flujos se hizo antes de contar IEEE.
 - **Scopus (S1).** El acceso institucional solo permitió consultar desde 2018 (656 documentos), coherente con el
   `PUBYEAR > 2017` de la cadena pero más corto que el periodo 2015–2026 declarado.
-- **S3.** Solo tiene cadena de Scopus (no de IEEE) y su conteo no alimenta el PRISMA; queda pendiente.
+- **S3.** Solo tiene cadena de Scopus (580 registros, 2018–2026); no tiene cadena de IEEE y no alimenta el PRISMA.
 - **Acceso.** Los conteos pendientes quedan como
   variables del PRISMA; las cadenas están selladas para ejecución idéntica.
 - **Publicación sesgada hacia positivos.** La literatura de TB tiende a reportar
